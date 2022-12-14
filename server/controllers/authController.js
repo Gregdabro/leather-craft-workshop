@@ -43,7 +43,7 @@ class AuthController {
             res.status(201).send({ ...tokens, userId: user._id, user })
 
         } catch (e) {
-            res.status(500).json("Что то пошло не так")
+            return next(ApiError.internalError(e.message))
         }
     }
 
