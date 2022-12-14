@@ -22,17 +22,17 @@ const Navbar = () => {
       <a href="/" className={styles.logo}>
         <img width={150} src={IMAGES.logo} alt="logo" />
       </a>
-      <ul className={styles.navLinks}>
-        <li>
+      <div className={styles.navLinks}>
+        <div>
           <a href={MAIN_ROUTE}>home</a>
-        </li>
-        <li>
+        </div>
+        <div>
           <a href={PRODUCT_ROUTE}>shop</a>
-        </li>
-        <li>
+        </div>
+        <div>
           <a href={ABOUT_ROUTE}>about</a>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink
             to={CONTACT_ROUTE}
             style={({ isActive, isPending }) => {
@@ -47,24 +47,24 @@ const Navbar = () => {
             contact
           </NavLink>
           {/*<a href={CONTACT_ROUTE}>contact</a>*/}
-        </li>
-      </ul>
-      <ul className={styles.navLinks}>
+        </div>
+      </div>
+      <div className={styles.navLinks}>
         {isLoggedIn ? (
-          <li>
-            <button className={styles.button} onClick={handleLogout}>
+          <div>
+            <button onClick={handleLogout}>
               logout
             </button>
-          </li>
+          </div>
         ) : (
-          <li>
+          <div>
             <a href={AUTH_ROUTE + "/signup"}>signup</a>
-          </li>
+          </div>
         )}
-        <li>
+        <div>
           <a href={CART_ROUTE}>cart</a>
-        </li>
-      </ul>
+        </div>
+      </div>
     </nav>
   )
 }

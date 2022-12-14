@@ -12,11 +12,7 @@ const ProductsLayout = () => {
   //     loadProductData()
   // }, [dispatch])
 
-  return (
-    <div style={{ paddingInline: 20 }}>
-      <Outlet />
-    </div>
-  )
+  return <Outlet />
 }
 
 export default ProductsLayout
