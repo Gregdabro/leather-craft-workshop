@@ -1,0 +1,43 @@
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 15px;
+
+  .logo{
+
+    img{}
+  }
+
+  .navLinks{
+    display: flex;
+    gap: 20px;
+    li {
+
+      .button {
+        padding: 0;
+        border: none;
+        font: inherit;
+        background-color: transparent;
+        text-transform: uppercase;
+        color: var(--black-color);
+
+        &:hover{
+          color: var(--brown-color);
+        }
+      }
+
+      a{
+        text-transform: uppercase;
+        color: var(--black-color);
+        padding-block: 10px;
+
+        &:hover{
+          color: var(--brown-color);
+        }
+      }
+    }
+  }
+
+}
