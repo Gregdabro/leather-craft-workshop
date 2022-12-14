@@ -14,7 +14,6 @@
   //}
 }
 
-
 .productListItem {
   &:hover,
   &:focus {
@@ -25,7 +24,7 @@
     .cardActionList {
       right: 0;
       opacity: 1;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
     }
   }
 
@@ -62,7 +61,7 @@
     top: 10px;
     right: -20px;
     opacity: 0;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     .cardActionItem {
       position: relative;
@@ -112,7 +111,6 @@
       font-weight: 500;
       margin-bottom: 12px;
 
-
       a {
         color: inherit;
         transition: var(--transition-1);
@@ -133,7 +131,7 @@
   }
 }
 
-.productListItemSkeleton{
+.productListItemSkeleton {
   color: transparent;
   .cardBanner {
     background: var(--gray-color);
@@ -159,6 +157,4 @@
       background-color: var(--gray-color);
     }
   }
-
 }
-

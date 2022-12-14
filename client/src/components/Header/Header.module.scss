@@ -1,4 +1,4 @@
-.header{
+.header {
   position: absolute;
   top: 0;
   left: 0;
@@ -16,6 +16,10 @@
 }
 
 @keyframes slideIn {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
