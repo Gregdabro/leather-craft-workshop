@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import colorService from "../services/colorService"
-export const getColors = createAsyncThunk("colors/get", async (_, thunkAPI) => {
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import colorService from '../services/colorService'
+export const getColors = createAsyncThunk('colors/get', async (_, thunkAPI) => {
   try {
     const response = await colorService.get()
     return response
@@ -15,13 +15,13 @@ const initialState = {
 }
 
 const colorSlice = createSlice({
-  name: "colors",
+  name: 'colors',
   initialState,
   extraReducers: {
     [getColors.fulfilled]: (state, action) => {
       state.isLoading = false
       state.entities = action.payload
-      state.error = ""
+      state.error = ''
     },
     [getColors.pending]: (state) => {
       state.isLoading = true

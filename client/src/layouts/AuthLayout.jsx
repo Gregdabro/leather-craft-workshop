@@ -1,6 +1,6 @@
-import { Navigate, Outlet } from "react-router-dom"
-import { useSelector } from "react-redux"
-import { isLoggedInSelector } from "../store/authSlice"
+import { Navigate, Outlet } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { isLoggedInSelector } from '../store/authSlice'
 
 const AuthLayout = () => {
   const isLoggedIn = useSelector(isLoggedInSelector())
@@ -12,12 +12,12 @@ const AuthLayout = () => {
   return (
     <div
       style={{
-        display: "flex",
-        minHeight: "100vh",
-        justifyContent: "center",
-        alignItems: "center",
+        display: 'flex',
+        minHeight: '100vh',
+        justifyContent: 'center',
+        alignItems: 'center',
         padding: 20,
-        background: "whitesmoke"
+        background: 'whitesmoke'
       }}
     >
       <Outlet />

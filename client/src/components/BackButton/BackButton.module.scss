@@ -1,0 +1,20 @@
+.backButton {
+  top: 5px;
+  left: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  color: #343434;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all .3s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  svg {
+    height: 1.5rem;
+    vertical-align: middle;
+  }
+}

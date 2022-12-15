@@ -1,6 +1,6 @@
-import httpService from "./http.services"
+import httpService from './http.services'
 
-const colorEndpoint = "color/"
+const colorEndpoint = 'color/'
 
 const colorService = {
   get: async () => {

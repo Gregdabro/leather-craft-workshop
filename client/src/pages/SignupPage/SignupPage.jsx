@@ -1,27 +1,27 @@
-import { useEffect, useState } from "react"
-import styles from "./SignupPage.module.scss"
-import * as Yup from "yup"
-import { useDispatch, useSelector } from "react-redux"
-import { useFormik, FormikProvider } from "formik"
-import { signup } from "../../store/authSlice"
-import { NavLink, useNavigate } from "react-router-dom"
-import TextField from "../../components/common/form/TextInput/TextInput"
-import { clearMessage } from "../../store/messageSlice"
+import { useEffect, useState } from 'react'
+import styles from './SignupPage.module.scss'
+import * as Yup from 'yup'
+import { useDispatch, useSelector } from 'react-redux'
+import { useFormik, FormikProvider } from 'formik'
+import { signup } from '../../store/authSlice'
+import { NavLink, useNavigate } from 'react-router-dom'
+import TextField from '../../components/common/form/TextInput/TextInput'
+import { clearMessage } from '../../store/messageSlice'
 
 const signUpSchema = Yup.object({
   name: Yup.string()
-    .min(3, "Name must contain at least 3 symbols")
-    .required("Required"),
-  email: Yup.string().email("Invalid email address").required("Required"),
+    .min(3, 'Name must contain at least 3 symbols')
+    .required('Required'),
+  email: Yup.string().email('Invalid email address').required('Required'),
   password: Yup.string()
-    .min(4, "Password must contain at least 4 symbols")
-    .required("Required")
+    .min(4, 'Password must contain at least 4 symbols')
+    .required('Required')
 })
 
 const initialValues = {
-  name: "",
-  email: "",
-  password: ""
+  name: '',
+  email: '',
+  password: ''
 }
 
 const SignupPage = () => {
@@ -44,7 +44,7 @@ const SignupPage = () => {
       .unwrap()
       .then(() => {
         setSuccessful(true)
-        navigate("/product")
+        navigate('/product')
       })
       .catch(() => {
         setSuccessful(false)
@@ -73,7 +73,7 @@ const SignupPage = () => {
               <button disabled={loading}>Sign Up</button>
               <p className={styles.signInlLink}>
                 <span> Already have account? </span>
-                <NavLink to={"/auth/login"}>Log In</NavLink>
+                <NavLink to={'/auth/login'}>Log In</NavLink>
               </p>
             </form>
           )}
@@ -81,7 +81,7 @@ const SignupPage = () => {
             <div className="form-group">
               <div
                 className={
-                  successful ? "alert alert-success" : "alert alert-danger"
+                  successful ? 'alert alert-success' : 'alert alert-danger'
                 }
                 role="alert"
               >

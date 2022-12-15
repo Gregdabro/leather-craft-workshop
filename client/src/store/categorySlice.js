@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import categoryService from "../services/categoryService"
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import categoryService from '../services/categoryService'
 export const getCategories = createAsyncThunk(
-  "categories/get",
+  'categories/get',
   async (_, thunkAPI) => {
     try {
       const response = await categoryService.get()
@@ -18,13 +18,13 @@ const initialState = {
 }
 
 const categorySlice = createSlice({
-  name: "categories",
+  name: 'categories',
   initialState,
   extraReducers: {
     [getCategories.fulfilled]: (state, action) => {
       state.isLoading = false
       state.entities = action.payload
-      state.error = ""
+      state.error = ''
     },
     [getCategories.pending]: (state) => {
       state.isLoading = true

@@ -1,7 +1,7 @@
-import axios from "axios"
+import axios from 'axios'
 
 const http = axios.create({
-  baseURL: process.env.REACT_APP_API_URL + "api/"
+  baseURL: process.env.REACT_APP_API_URL + 'api/'
 })
 
 http.interceptors.response.use(
@@ -15,7 +15,7 @@ http.interceptors.response.use(
       error.response.status < 500
 
     if (!expectedErrors) {
-      alert("Something was wrong. Try it later")
+      alert('Something was wrong. Try it later')
     }
     return Promise.reject(error)
   }

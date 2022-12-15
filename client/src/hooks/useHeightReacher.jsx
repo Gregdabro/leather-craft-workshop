@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 function useHeightReacher(offsetBlurHeight) {
   const [isReached, setIsReached] = useState(isHeightReached(offsetBlurHeight))
   function isHeightReached(height) {
@@ -11,9 +11,9 @@ function useHeightReacher(offsetBlurHeight) {
     const handleScroll = () => {
       setIsReached(isHeightReached(offsetBlurHeight))
     }
-    window.addEventListener("scroll", handleScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
-      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [offsetBlurHeight])
   return { isReached }

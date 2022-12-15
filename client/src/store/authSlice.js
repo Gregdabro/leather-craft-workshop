@@ -1,9 +1,9 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import authService from "../services/auth.service"
-import { setMessage } from "./messageSlice"
-const user = JSON.parse(localStorage.getItem("user"))
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import authService from '../services/auth.service'
+import { setMessage } from './messageSlice'
+const user = JSON.parse(localStorage.getItem('user'))
 export const signup = createAsyncThunk(
-  "auth/signup",
+  'auth/signup',
   async ({ name, email, password }, thunkAPI) => {
     try {
       const response = await authService.signup({ name, email, password })
@@ -19,7 +19,7 @@ export const signup = createAsyncThunk(
   }
 )
 export const login = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async ({ email, password }, thunkAPI) => {
     try {
       const response = await authService.login({ email, password })
@@ -34,7 +34,7 @@ export const login = createAsyncThunk(
     }
   }
 )
-export const logout = createAsyncThunk("auth/logout", async () => {
+export const logout = createAsyncThunk('auth/logout', async () => {
   await authService.logout()
 })
 const initialState = user
@@ -42,7 +42,7 @@ const initialState = user
   : { isLoggedIn: false, user: null }
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   extraReducers: {
     [signup.fulfilled]: (state, action) => {

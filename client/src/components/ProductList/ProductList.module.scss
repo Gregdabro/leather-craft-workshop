@@ -1,38 +1,34 @@
 .productList {
   display: grid;
-  gap: 50px 50px;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 25px 25px;
 
-  //@media (min-width: 575px) {
-  //  grid-template-columns: 1fr 1fr;
-  //}
-  //@media (min-width: 992px) {
-  //  grid-template-columns: repeat(3, 1fr);
-  //}
-  //@media (min-width: 1200px) {
-  //  grid-template-columns: repeat(4, 1fr);
-  //}
+  @media (min-width: 575px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.productListItem {
+.productCard {
+  border: 1px solid #ededed;
+
   &:hover,
   &:focus {
     .imageContain {
       transform: scale(1.1);
     }
 
-    .cardActionList {
-      right: 0;
+    .cardAction {
+      right: 20px;
       opacity: 1;
-      transition: all 0.3s ease;
     }
   }
 
   .cardBanner {
-    padding-top: 20px;
-    background: #f3f0f1;
-    border-radius: 10px;
+    background: #ccc;
     position: relative;
+    height: 350px;
     overflow: hidden;
 
     .imageContain {
@@ -45,116 +41,65 @@
 
     .cardBadge {
       position: absolute;
-      top: 10px;
+      top: 20px;
+      left: 0;
       background: orangered;
       color: white;
       font-weight: 600;
       padding: 5px 10px;
-      font-family: var(--ff-roboto);
       font-size: 16px;
     }
   }
 
-  .cardActionList {
-    display: flex;
+  .cardAction {
     position: absolute;
-    top: 10px;
+    top: 20px;
     right: -20px;
     opacity: 0;
     transition: all 0.3s ease;
 
-    .cardActionItem {
+    .cardActionBtn {
       position: relative;
+      background: white;
+      color: black;
+      font-size: 21px;
+      padding: 7px;
+      border-radius: 50%;
+      transition: all 0.5s ease;
+      border: none;
 
-      &:not(:last-child) {
-        margin-bottom: 10px;
-      }
-
-      .cardActionBtn {
-        background: var(--white);
-        color: var(--rich-black-fogra-29);
-        font-size: 18px;
-        padding: 10px;
-        border-radius: 50%;
-        transition: var(--transition-1);
-        border: none;
-
-        svg {
-          display: block;
-          font-size: 25px;
-          font-weight: 900;
-          color: #343434;
-        }
-
-        &:hover,
-        &:focus {
-          background: var(--bittersweet);
-          color: var(--white);
-        }
+      &:hover,
+      &:focus {
+        background: orangered;
+        color: white;
       }
     }
   }
 
   .cardContent {
-    padding: 24px 15px 0;
+    padding: 24px 15px;
     text-align: center;
 
-    .cardProductRate {
-      font-family: var(--ff-roboto);
-      color: var(--onyx);
-      font-size: 2rem;
-      margin-bottom: 12px;
-    }
-
     .cardTitle {
-      text-transform: uppercase;
+      text-transform: capitalize;
       font-weight: 500;
       margin-bottom: 12px;
 
       a {
         color: inherit;
-        transition: var(--transition-1);
+        transition: all 0.3s ease;
 
         &:hover,
         &:focus {
-          color: var(--safetyorange);
+          color: orangered;
         }
       }
     }
 
     .cardPrice {
-      color: var(--safetyorange);
-      font-family: var(--ff-roboto);
-      font-weight: var(--fw-600);
+      color: orangered;
+      font-weight: 600;
       font-size: 20px;
-    }
-  }
-}
-
-.productListItemSkeleton {
-  color: transparent;
-  .cardBanner {
-    background: var(--gray-color);
-    border-radius: 10px;
-    height: 350px;
-  }
-
-  .cardContent {
-    margin-top: 12px;
-
-    .cardProductRate {
-      background-color: var(--gray-color);
-    }
-
-    .cardTitle {
-      text-transform: capitalize;
-      background-color: var(--gray-color);
-      margin-bottom: 12px;
-    }
-
-    .cardPrice {
-      margin-top: 12px;
-      background-color: var(--gray-color);
     }
   }
 }
