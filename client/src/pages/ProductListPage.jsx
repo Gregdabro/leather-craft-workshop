@@ -1,23 +1,18 @@
-import { useSelector } from "react-redux"
-import { categoryListSelector } from "../store/categorySlice"
-import { productListSelector } from "../store/productSlice"
-import React from "react"
-import ProductList from "../components/ProductList/ProductList"
-import CategoryBtn from "../components/CategoryBtn/CategoryBtn"
+import { useSelector } from 'react-redux'
+import { categoryListSelector } from '../store/categorySlice'
+import { productListSelector } from '../store/productSlice'
+import React from 'react'
+import ProductList from '../components/ProductList/ProductList'
+import PageHeader from '../components/PageHeader/PageHeader'
+import FilterProducts from '../components/FilterProducts/FilterProducts'
 
 const ProductListPage = () => {
   const productList = useSelector(productListSelector())
   const categoryList = useSelector(categoryListSelector())
   return (
     <>
-      <div style={{ display: "flex", gap: 20, flexWrap: "wrap", justifyContent: "center", alignItems: "center", marginBottom: 30 }} className="categoryList">
-          <CategoryBtn>All</CategoryBtn>
-          {categoryList &&
-          categoryList.map((item) => (
-              <CategoryBtn key={item._id}>{item.name}</CategoryBtn>
-          ))}
-      </div>
-
+      <PageHeader title='catalog' subTitle="Leather Belts"/>
+      <FilterProducts categories={categoryList}/>
       <ProductList>
         {productList &&
           productList.map((item) => (

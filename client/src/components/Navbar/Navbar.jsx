@@ -1,5 +1,5 @@
-import styles from "./Navbar.module.scss"
-import IMAGES from "../../constants/images"
+import styles from './Navbar.module.scss'
+import IMAGES from '../../constants/images'
 import {
   MAIN_ROUTE,
   PRODUCT_ROUTE,
@@ -7,20 +7,20 @@ import {
   CONTACT_ROUTE,
   AUTH_ROUTE,
   CART_ROUTE
-} from "../../utils/consts"
-import { useSelector } from "react-redux"
-import useLogout from "../../hooks/useLogout"
-import { isLoggedInSelector } from "../../store/authSlice"
-import { NavLink } from "react-router-dom"
+} from '../../utils/consts'
+import { useSelector } from 'react-redux'
+import useLogout from '../../hooks/useLogout'
+import { isLoggedInSelector } from '../../store/authSlice'
+import { NavLink } from 'react-router-dom'
 
 const Navbar = () => {
   const isLoggedIn = useSelector(isLoggedInSelector())
   const handleLogout = useLogout()
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} container`}>
       <a href="/" className={styles.logo}>
-        <img width={150} src={IMAGES.logo} alt="logo" />
+        <img width={60} src={IMAGES.logo3} alt="logo" />
       </a>
       <div className={styles.navLinks}>
         <div>
@@ -37,11 +37,11 @@ const Navbar = () => {
             to={CONTACT_ROUTE}
             style={({ isActive, isPending }) => {
               return {
-                color: isActive ? "red" : "inherit"
+                color: isActive ? 'red' : 'inherit'
               }
             }}
             className={({ isActive, isPending }) => {
-              return isActive ? "active" : isPending ? "pending" : ""
+              return isActive ? 'active' : isPending ? 'pending' : ''
             }}
           >
             contact
@@ -52,13 +52,11 @@ const Navbar = () => {
       <div className={styles.navLinks}>
         {isLoggedIn ? (
           <div>
-            <button onClick={handleLogout}>
-              logout
-            </button>
+            <button onClick={handleLogout}>logout</button>
           </div>
         ) : (
           <div>
-            <a href={AUTH_ROUTE + "/signup"}>signup</a>
+            <a href={AUTH_ROUTE + '/signup'}>signup</a>
           </div>
         )}
         <div>

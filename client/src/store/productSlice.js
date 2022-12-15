@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import productService from "../services/product.service"
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import productService from '../services/product.service'
 export const getProducts = createAsyncThunk(
-  "products/get",
+  'products/get',
   async (_, thunkAPI) => {
     try {
       const response = await productService.get()
@@ -13,24 +13,24 @@ export const getProducts = createAsyncThunk(
 )
 const initialState = {
   entities: [],
-  isLoading: "idle",
+  isLoading: 'idle',
   error: null
 }
 
 const productSlice = createSlice({
-  name: "products",
+  name: 'products',
   initialState,
   extraReducers: {
     [getProducts.fulfilled]: (state, action) => {
-      state.isLoading = "success"
+      state.isLoading = 'success'
       state.entities = action.payload
-      state.error = ""
+      state.error = ''
     },
     [getProducts.pending]: (state) => {
-      state.isLoading = "pending"
+      state.isLoading = 'pending'
     },
     [getProducts.rejected]: (state) => {
-      state.isLoading = "failed"
+      state.isLoading = 'failed'
     }
   }
 })

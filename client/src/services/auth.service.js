@@ -1,8 +1,8 @@
-import axios from "axios"
-import localStorageService from "./localStorage.service"
+import axios from 'axios'
+import localStorageService from './localStorage.service'
 
 const httpAuth = axios.create({
-  baseURL: process.env.REACT_APP_API_URL + "api/auth/"
+  baseURL: process.env.REACT_APP_API_URL + 'api/auth/'
 })
 
 httpAuth.interceptors.response.use(
@@ -16,7 +16,7 @@ httpAuth.interceptors.response.use(
       error.response.status < 503
 
     if (!expectedErrors) {
-      alert("Something was wrong. Try it later")
+      alert('Something was wrong. Try it later')
     }
     return Promise.reject(error)
   }
@@ -33,7 +33,7 @@ httpAuth.interceptors.response.use(
 
 const authService = {
   signup: async ({ name, email, password }) => {
-    const { data } = await httpAuth.post("signup", {
+    const { data } = await httpAuth.post('signup', {
       name,
       email,
       password
@@ -42,7 +42,7 @@ const authService = {
     return data
   },
   login: async ({ email, password }) => {
-    const { data } = await httpAuth.post("login", {
+    const { data } = await httpAuth.post('login', {
       email,
       password
     })
@@ -50,7 +50,7 @@ const authService = {
     return data
   },
   logout: async () => {
-    localStorage.removeItem("user")
+    localStorage.removeItem('user')
   }
   // todo: проверка авторизации
   // check: async () => {

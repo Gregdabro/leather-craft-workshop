@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Outlet } from 'react-router-dom'
 // import {useDispatch} from "react-redux";
 // import {getProducts} from "../store/productSlice";
 

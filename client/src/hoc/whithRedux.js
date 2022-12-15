@@ -1,5 +1,5 @@
-import { createStore } from "../store/createStore"
-import { Provider } from "react-redux"
+import { createStore } from '../store/createStore'
+import { Provider } from 'react-redux'
 
 const store = createStore()
 

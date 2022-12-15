@@ -1,7 +1,7 @@
-const TOKEN_KEY = "jwt-token"
-const REFRESH_KEY = "jwt-refresh-token"
-const EXPIRES_KEY = "jwt-expires"
-const USER_KEY = "user"
+const TOKEN_KEY = 'jwt-token'
+const REFRESH_KEY = 'jwt-refresh-token'
+const EXPIRES_KEY = 'jwt-expires'
+const USER_KEY = 'user'
 
 export function setTokens({
   refreshToken,

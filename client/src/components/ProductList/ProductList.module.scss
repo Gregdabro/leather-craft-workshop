@@ -10,11 +10,8 @@
   }
 }
 
-
-
 .productCard {
   border: 1px solid #ededed;
-  border-radius: 10px;
 
   &:hover,
   &:focus {
@@ -30,7 +27,6 @@
 
   .cardBanner {
     background: #ccc;
-    border-radius: 10px 10px 0 0;
     position: relative;
     height: 350px;
     overflow: hidden;
@@ -55,7 +51,6 @@
     }
   }
 
-
   .cardAction {
     position: absolute;
     top: 20px;
@@ -70,7 +65,7 @@
       font-size: 21px;
       padding: 7px;
       border-radius: 50%;
-      transition: all .5s ease;
+      transition: all 0.5s ease;
       border: none;
 
       &:hover,
@@ -92,7 +87,7 @@
 
       a {
         color: inherit;
-        transition: all .3s ease;
+        transition: all 0.3s ease;
 
         &:hover,
         &:focus {

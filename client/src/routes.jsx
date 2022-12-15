@@ -1,58 +1,58 @@
-import MainPage from "./pages/MainPage"
-import AuthLayout from "./layouts/AuthLayout"
-import { Navigate } from "react-router-dom"
-import SignupPage from "./pages/SignupPage"
-import ProductsLayout from "./layouts/ProductsLayout"
-import ProductListPage from "./pages/ProductListPage"
-import ProductPage from "./pages/ProductPage"
-import BasketPage from "./pages/BasketPage"
-import ContactPage from "./pages/ContactPage"
-import AboutPage from "./pages/AboutPage"
-import LoginPage from "./pages/LoginPage"
+import MainPage from './pages/MainPage'
+import AuthLayout from './layouts/AuthLayout'
+import { Navigate } from 'react-router-dom'
+import SignupPage from './pages/SignupPage'
+import ProductsLayout from './layouts/ProductsLayout'
+import ProductListPage from './pages/ProductListPage'
+import ProductPage from './pages/ProductPage'
+import BasketPage from './pages/BasketPage'
+import ContactPage from './pages/ContactPage'
+import AboutPage from './pages/AboutPage'
+import LoginPage from './pages/LoginPage'
 
 const routes = (isLoggedIn, location) => [
   {
-    path: "",
+    path: '',
     element: <MainPage />
   },
   {
-    path: "auth",
+    path: 'auth',
     element: <AuthLayout />,
     children: [
       {
-        path: "",
+        path: '',
         element: <Navigate to="/auth/signup" />
       },
       {
-        path: "login",
+        path: 'login',
         element: <LoginPage />
       },
       {
-        path: "signup",
+        path: 'signup',
         element: <SignupPage />
       },
       {
-        path: "*",
+        path: '*',
         element: <Navigate to="/auth/signup" />
       }
     ]
   },
   {
-    path: "product",
+    path: 'product',
     element: <ProductsLayout />,
     children: [
       {
-        path: "",
+        path: '',
         element: <ProductListPage />
       },
       {
-        path: ":id",
+        path: ':id',
         element: <ProductPage />
       }
     ]
   },
   {
-    path: "cart",
+    path: 'cart',
     element: isLoggedIn ? (
       <BasketPage />
     ) : (
@@ -60,15 +60,15 @@ const routes = (isLoggedIn, location) => [
     )
   },
   {
-    path: "/contact",
+    path: '/contact',
     element: <ContactPage />
   },
   {
-    path: "/about",
+    path: '/about',
     element: <AboutPage />
   },
   {
-    path: "*",
+    path: '*',
     element: <Navigate to="/product" />
   }
 ]

@@ -3,16 +3,17 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding-block: 20px;
-  background-color: whitesmoke;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  height: 80px;
+  padding-block: 15px;
+  background-color: transparent;
   z-index: 4;
 }
 
 .active {
   position: fixed;
   animation: slideIn 0.5s ease forwards;
-  background-color: var(--white-color);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  background-color: transparent;
 }
 
 @keyframes slideIn {
