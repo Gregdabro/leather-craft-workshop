@@ -22,23 +22,29 @@ const Product = () => {
           <img src={images[selectedImg]} />
         </div>
         <div className={styles.images}>
-          <img src={images[0]} onClick={() => setSelectedImg(0)}/>
-          <img src={images[1]} onClick={() => setSelectedImg(1)}/>
-          <img src={images[0]} onClick={() => setSelectedImg(0)}/>
-          <img src={images[1]} onClick={() => setSelectedImg(1)}/>
+          <img src={images[0]} onClick={() => setSelectedImg(0)} />
+          <img src={images[1]} onClick={() => setSelectedImg(1)} />
+          <img src={images[0]} onClick={() => setSelectedImg(0)} />
+          <img src={images[1]} onClick={() => setSelectedImg(1)} />
         </div>
       </div>
       <div className={styles.right}>
         <h1>bakers bridle</h1>
         <span className={styles.price}>$290</span>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium amet asperiores enim et, excepturi fugiat harum impedit laboriosam, magni mollitia nesciunt non odit perferendis quas quisquam quos repellat reprehenderit similique.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium
+          amet asperiores enim et, excepturi fugiat harum impedit laboriosam,
+          magni mollitia nesciunt non odit perferendis quas quisquam quos
+          repellat reprehenderit similique.
         </p>
 
         <Quantity />
         <Button>add to cart</Button>
         <div className={styles.links}>
-          <div className={styles.item}><HiOutlineHeart/>ADD TO WISH LIST</div>
+          <div className={styles.item}>
+            <HiOutlineHeart />
+            ADD TO WISH LIST
+          </div>
           <div className={styles.item}>POPULAR</div>
         </div>
         <div className={styles.info}>
@@ -46,12 +52,12 @@ const Product = () => {
           <span>Product Type: T-Shirt</span>
           <span>Tag: Shirt, Popular, men</span>
         </div>
-        <hr/>
+        <hr />
         <div className={styles.info}>
           <span>DESCRIPTION</span>
-          <hr/>
+          <hr />
           <span>ADDITIONAL INFORMATION</span>
-          <hr/>
+          <hr />
           <span>FAQ</span>
         </div>
       </div>

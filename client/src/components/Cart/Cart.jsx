@@ -30,18 +30,20 @@ const Cart = () => {
         <h1>Products in your cart</h1>
       </div>
       <div className={styles.middle}>
-        {data?.map(item => (
+        {data?.map((item) => (
           <div className={styles.item} key={item.id}>
             <div className={styles.itemInfo}>
-              <img src={item.img}/>
+              <img src={item.img} />
               <div className={styles.details}>
                 <h2>{item.title}</h2>
-                <p className={styles.size}>Size<span>70cm</span></p>
+                <p className={styles.size}>
+                  Size<span>70cm</span>
+                </p>
                 <p className={styles.color}>color</p>
               </div>
             </div>
-            <Quantity/>
-            <AiOutlineDelete className={styles.delete}/>
+            <Quantity />
+            <AiOutlineDelete className={styles.delete} />
           </div>
         ))}
         <div className={styles.total}>

@@ -1,7 +1,7 @@
 import PageHeader from '../../components/PageHeader/PageHeader'
 import styles from './AdminPage.module.scss'
 import { AiOutlineSearch, AiOutlineShop } from 'react-icons/ai'
-import Table from '../../components/Table/Table'
+import DataTable from '../../components/DataTable/DataTable'
 
 const AdminPage = () => {
   return (
@@ -16,28 +16,28 @@ const AdminPage = () => {
             <ul>
               <p className={styles.title}>List</p>
               <li className={styles.item}>
-                <AiOutlineShop className={styles.icon}/>
+                <AiOutlineShop className={styles.icon} />
                 <span>Users</span>
               </li>
               <li className={styles.item}>
-                <AiOutlineShop className={styles.icon}/>
+                <AiOutlineShop className={styles.icon} />
                 <span>Products</span>
               </li>
               <li className={styles.item}>
-                <AiOutlineShop className={styles.icon}/>
+                <AiOutlineShop className={styles.icon} />
                 <span>Orders</span>
               </li>
               <li className={styles.item}>
-                <AiOutlineShop className={styles.icon}/>
+                <AiOutlineShop className={styles.icon} />
                 <span>Delivery</span>
               </li>
               <p className={styles.title}>User</p>
               <li className={styles.item}>
-                <AiOutlineShop className={styles.icon}/>
+                <AiOutlineShop className={styles.icon} />
                 <span>Profile</span>
               </li>
               <li className={styles.item}>
-                <AiOutlineShop className={styles.icon}/>
+                <AiOutlineShop className={styles.icon} />
                 <span>Logout</span>
               </li>
             </ul>
@@ -48,7 +48,7 @@ const AdminPage = () => {
           </div>
         </div>
         <div className={styles.container}>
-          <Table />
+          <DataTable />
         </div>
       </div>
     </>

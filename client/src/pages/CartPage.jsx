@@ -5,7 +5,7 @@ import React from 'react'
 const CartPage = () => {
   return (
     <>
-      <PageHeader title="cart" subTitle="Leather Belt" isBackButton={true}/>
+      <PageHeader title="cart" subTitle="Leather Belt" isBackButton={true} />
       <Cart />
     </>
   )
