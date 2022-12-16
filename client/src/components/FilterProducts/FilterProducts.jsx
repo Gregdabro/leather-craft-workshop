@@ -6,9 +6,10 @@ const FilterProducts = ({ categories }) => {
     <div className={styles.filterProducts}>
       <div className={styles.categoryList}>
         <CategoryBtn>all</CategoryBtn>
-        {categories && categories.map(item => (
-          <CategoryBtn key={item._id}>{item.name}</CategoryBtn>
-        ))}
+        {categories &&
+          categories.map((item) => (
+            <CategoryBtn key={item._id}>{item.name}</CategoryBtn>
+          ))}
       </div>
       <div className={styles.colorList}>
         <button>red</button>

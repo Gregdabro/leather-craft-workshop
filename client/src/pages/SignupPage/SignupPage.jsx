@@ -7,6 +7,7 @@ import { signup } from '../../store/authSlice'
 import { NavLink, useNavigate } from 'react-router-dom'
 import TextField from '../../components/common/form/TextInput/TextInput'
 import { clearMessage } from '../../store/messageSlice'
+import Button from '../../components/Button/Button'
 
 const signUpSchema = Yup.object({
   name: Yup.string()
@@ -70,7 +71,7 @@ const SignupPage = () => {
               <TextField label="Name" name="name" />
               <TextField label="Email" name="email" />
               <TextField label="Password" name="password" type="password" />
-              <button disabled={loading}>Sign Up</button>
+              <Button disabled={loading}>Sign Up</Button>
               <p className={styles.signInlLink}>
                 <span> Already have account? </span>
                 <NavLink to={'/auth/login'}>Log In</NavLink>

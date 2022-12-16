@@ -11,8 +11,8 @@ const ProductListPage = () => {
   const categoryList = useSelector(categoryListSelector())
   return (
     <>
-      <PageHeader title='catalog' subTitle="Leather Belts"/>
-      <FilterProducts categories={categoryList}/>
+      <PageHeader title="catalog" subTitle="Leather Belts" />
+      <FilterProducts categories={categoryList} />
       <ProductList>
         {productList &&
           productList.map((item) => (
