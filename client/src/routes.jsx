@@ -9,11 +9,16 @@ import CartPage from './pages/CartPage'
 import ContactPage from './pages/ContactPage'
 import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
+import AdminPage from './pages/AdminPage/AdminPage'
 
 const routes = (isLoggedIn, location) => [
   {
     path: '',
     element: <MainPage />
+  },
+  {
+    path: 'admin',
+    element: <AdminPage />
   },
   {
     path: 'auth',
