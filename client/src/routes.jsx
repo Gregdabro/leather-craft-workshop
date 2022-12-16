@@ -5,7 +5,7 @@ import SignupPage from './pages/SignupPage'
 import ProductsLayout from './layouts/ProductsLayout'
 import ProductListPage from './pages/ProductListPage'
 import ProductPage from './pages/ProductPage'
-import BasketPage from './pages/BasketPage'
+import CartPage from './pages/CartPage'
 import ContactPage from './pages/ContactPage'
 import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
@@ -54,7 +54,7 @@ const routes = (isLoggedIn, location) => [
   {
     path: 'cart',
     element: isLoggedIn ? (
-      <BasketPage />
+      <CartPage />
     ) : (
       <Navigate to="/auth/login" state={{ referrer: location }} />
     )

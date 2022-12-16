@@ -3,6 +3,7 @@ import IMAGES from '../../constants/images'
 import { useState } from 'react'
 import Button from '../Button/Button'
 import { HiOutlineHeart } from 'react-icons/hi2'
+import Quantity from '../Quantity/Quantity'
 
 const Product = () => {
   const [selectedImg, setSelectedImg] = useState(0)
@@ -33,11 +34,8 @@ const Product = () => {
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium amet asperiores enim et, excepturi fugiat harum impedit laboriosam, magni mollitia nesciunt non odit perferendis quas quisquam quos repellat reprehenderit similique.
         </p>
-        <div className={styles.quantity}>
-          <button onClick={() => setQuantity(prev => prev === 1 ? 1 : prev - 1)}>-</button>
-          <span>{quantity}</span>
-          <button onClick={() => setQuantity(prev => prev + 1)}>+</button>
-        </div>
+
+        <Quantity />
         <Button>add to cart</Button>
         <div className={styles.links}>
           <div className={styles.item}><HiOutlineHeart/>ADD TO WISH LIST</div>
