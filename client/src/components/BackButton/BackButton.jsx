@@ -8,7 +8,7 @@ const BackButton = ({ label, children }) => {
   }
   return (
     <button onClick={handleClick} className={styles.backButton}>
-      <ChevronLeftIcon className="h-6" />
+      <ChevronLeftIcon />
       {children || label}
     </button>
   )

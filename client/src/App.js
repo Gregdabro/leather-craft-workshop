@@ -7,13 +7,14 @@ import withRedux from './hoc/whithRedux'
 import AppLoader from './hoc/appLoader'
 import routes from './routes'
 import { useSelector } from 'react-redux'
-import { isLoggedInSelector } from './store/authSlice'
+import { isAdminSelector, isLoggedInSelector } from './store/authSlice'
 import Footer from './components/Footer/Footer'
 
 function App() {
   const isLoggedIn = useSelector(isLoggedInSelector())
+  const isAdmin = useSelector(isAdminSelector())
   const location = useLocation()
-  const elements = useRoutes(routes(isLoggedIn, location))
+  const elements = useRoutes(routes(isLoggedIn, location, isAdmin))
   return (
     <div className="App">
       <Header />

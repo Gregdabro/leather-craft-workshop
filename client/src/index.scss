@@ -31,25 +31,6 @@ a {
   text-decoration: none;
 }
 
-a,
-img,
-span,
-button,
-svg {
-  display: block;
-}
-
-button,
-input {
-  font: inherit;
-  background: none;
-  border: none;
-}
-
-input {
-  width: 100%;
-}
-
 button {
   cursor: pointer;
 }

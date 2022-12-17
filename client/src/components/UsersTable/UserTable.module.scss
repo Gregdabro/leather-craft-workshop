@@ -1,0 +1,95 @@
+.content {
+  flex: 6;
+
+  .sectionTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    height: 50px;
+    border-bottom: 0.5px solid rgb(230, 227, 227);
+
+    h2 {
+      font-size: 24px;
+      font-weight: 400;
+      color: gray;
+      display: flex;
+      height: 100%;
+      align-items: center;
+    }
+
+    .link {
+      color: green;
+      font-size: 16px;
+      font-weight: 600;
+      border: 1px solid green;
+      border-radius: 5px;
+      padding: 5px;
+      cursor: pointer;
+    }
+  }
+}
+
+.dataTable {
+  height: 600px;
+  padding: 20px;
+
+  .addButton {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+
+    .buttonLink {
+      color: green;
+      font-size: 16px;
+      font-weight: 600;
+      border: 1px solid green;
+      border-radius: 5px;
+      padding: 5px;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .cellWithStatus {
+    padding: 5px;
+    border-radius: 5px;
+
+    &.active {
+      background-color: rgba(0, 128, 0, 0.05);
+      color: green;
+    }
+    &.pending {
+      background-color: rgba(255, 217, 0, 0.05);
+      color: goldenrod;
+    }
+    &.passive {
+      background-color: rgba(255, 0, 0, 0.05);
+      color: crimson;
+    }
+  }
+
+  .cellAction {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    a {
+      display: flex;
+      align-items: center;
+
+      .viewButton {
+        font-size: 20px;
+        color: gray;
+      }
+    }
+
+    .deleteButton {
+      font-size: 20px;
+      color: red;
+    }
+  }
+}

@@ -38,7 +38,7 @@ export const logout = createAsyncThunk('auth/logout', async () => {
   await authService.logout()
 })
 const initialState = user
-  ? { isLoggedIn: true, user }
+  ? { isLoggedIn: true, user, isAdmin: user.role === 'ADMIN' }
   : { isLoggedIn: false, user: null }
 
 const authSlice = createSlice({
@@ -70,4 +70,5 @@ const { reducer: authReducer } = authSlice
 
 export const isLoggedInSelector = () => (state) => state.auth.isLoggedIn
 export const getCurrentUser = () => (state) => state.auth.user
+export const isAdminSelector = () => (state) => state.auth.isAdmin
 export default authReducer

@@ -9,16 +9,38 @@ import CartPage from './pages/CartPage'
 import ContactPage from './pages/ContactPage'
 import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
-import AdminPage from './pages/AdminPage/AdminPage'
+import ProductsTable from './components/ProductsTable/ProductsTable'
+import AddProduct from './components/AddProduct/AddProduct'
+import UserTable from './components/UsersTable/UserTable'
+import AdminPage from './pages/AdminPage'
+import AdminHome from './components/AdminHome/AdminHome'
 
-const routes = (isLoggedIn, location) => [
+const routes = (isLoggedIn, location, isAdmin) => [
   {
     path: '',
     element: <MainPage />
   },
   {
     path: 'admin',
-    element: <AdminPage />
+    element: isAdmin ? <AdminPage /> : <Navigate to="/auth/login" state={{ referrer: location }} />,
+    children: [
+      {
+        path: '',
+        element: <AdminHome />
+      },
+      {
+        path: 'users',
+        element: <UserTable />
+      },
+      {
+        path: 'products',
+        element: <ProductsTable />
+      },
+      {
+        path: 'add-product',
+        element: <AddProduct />
+      }
+    ]
   },
   {
     path: 'auth',
