@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 import { categoryListSelector } from '../store/categorySlice'
 import { productListSelector } from '../store/productSlice'
-import React from 'react'
 import ProductList from '../components/ProductList/ProductList'
 import PageHeader from '../components/PageHeader/PageHeader'
 import FilterProducts from '../components/FilterProducts/FilterProducts'

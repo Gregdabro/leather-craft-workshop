@@ -52,7 +52,6 @@
     overflow: hidden;
     flex: 6;
 
-
     .main {
       width: 100%;
 
@@ -84,8 +83,6 @@
           padding: 5px;
           cursor: pointer;
         }
-
-
       }
 
       .mainSection {
@@ -172,7 +169,8 @@
             font-size: 15px;
           }
 
-          th, td {
+          th,
+          td {
             width: 150px;
             border-bottom: 1px solid #ddd;
             padding: 10px 20px;
@@ -187,7 +185,6 @@
             object-fit: contain;
             border-radius: 15px;
             border: 1px solid #ced0d2;
-
           }
 
           .buttons {
@@ -208,7 +205,6 @@
 
             button:nth-child(2) {
               color: red;
-
             }
           }
 

@@ -35,7 +35,6 @@ const LoginPage = () => {
     const { email, password } = formValues
     setLoading(true)
     setSuccessful(false)
-    console.log(email, password)
     dispatch(login({ email, password }))
       .unwrap()
       .then(() => {

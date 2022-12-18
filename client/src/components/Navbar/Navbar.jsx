@@ -46,7 +46,6 @@ const Navbar = () => {
           >
             contact
           </NavLink>
-          {/*<a href={CONTACT_ROUTE}>contact</a>*/}
         </div>
       </div>
       <div className={styles.navLinks}>

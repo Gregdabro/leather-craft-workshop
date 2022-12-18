@@ -12,8 +12,8 @@ import LoginPage from './pages/LoginPage'
 import AdminPage from './pages/AdminPage'
 import ProductsTable from './components/Admin/ProductsTable'
 import UserTable from './components/Admin/UserTable'
-import OrdersTable from './components/Admin/OrdersTable'
 import AddProduct from './components/Admin/AddProduct'
+import CommonList from './components/Admin/CommonList'
 
 const routes = (isLoggedIn, location, isAdmin) => [
   {
@@ -22,7 +22,11 @@ const routes = (isLoggedIn, location, isAdmin) => [
   },
   {
     path: 'admin',
-    element: isAdmin ? <AdminPage /> : <Navigate to="/auth/login" state={{ referrer: location }} />,
+    element: isAdmin ? (
+      <AdminPage />
+    ) : (
+      <Navigate to="/auth/login" state={{ referrer: location }} />
+    ),
     children: [
       {
         path: '',
@@ -36,10 +40,10 @@ const routes = (isLoggedIn, location, isAdmin) => [
         path: 'products',
         element: <ProductsTable />
       },
-      {
-        path: 'orders',
-        element: <OrdersTable />
-      },
+      // {
+      //   path: 'orders',
+      //   element: <CommonList />
+      // },
       {
         path: 'add-product',
         element: <AddProduct />

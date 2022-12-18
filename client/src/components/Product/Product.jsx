@@ -7,13 +7,7 @@ import Quantity from '../Quantity/Quantity'
 
 const Product = () => {
   const [selectedImg, setSelectedImg] = useState(0)
-  const [quantity, setQuantity] = useState(1)
-  const images = [
-    // 'https://images.pexels.com/photos/14610789/pexels-photo-14610789.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    // 'https://images.pexels.com/photos/14610789/pexels-photo-14610789.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-    IMAGES.damask_bridle,
-    IMAGES.berkley_bridle
-  ]
+  const images = [IMAGES.damask_bridle, IMAGES.berkley_bridle]
 
   return (
     <div className={styles.product}>

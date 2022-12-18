@@ -9,7 +9,7 @@ const AddProduct = () => {
 
   return (
     <div className={styles.main}>
-      <AdminNavbar title="Add new Product" isBackButton={true}/>
+      <AdminNavbar title="Add new Product" isBackButton={true} />
       <div className={styles.mainSection}>
         <div className={styles.newProduct}>
           <div className={styles.left}>

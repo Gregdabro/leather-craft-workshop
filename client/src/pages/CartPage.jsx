@@ -1,6 +1,5 @@
 import Cart from '../components/Cart/Cart'
 import PageHeader from '../components/PageHeader/PageHeader'
-import React from 'react'
 
 const CartPage = () => {
   return (

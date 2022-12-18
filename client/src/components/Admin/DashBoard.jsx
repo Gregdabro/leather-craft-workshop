@@ -24,9 +24,7 @@ const DashBoard = ({ children }) => {
           </Link>
         </div>
       </div>
-      <div className={styles.content}>
-        {children}
-      </div>
+      <div className={styles.content}>{children}</div>
     </div>
   )
 }

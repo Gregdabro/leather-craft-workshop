@@ -34,9 +34,25 @@ const colorSlice = createSlice({
 const { reducer: colorReducer } = colorSlice
 
 // Selectors
-export const colorLoadingStatusSelector = () => (state) =>
-  state.colors.isLoading
+export const isLoadingStatusSelector = () => (state) => state.colors.isLoading
 export const colorListSelector = () => (state) => state.colors.entities
+
+export const getColorsByIds = (colorsIds) => (state) => {
+  console.log('colors colorsIds', colorsIds)
+  if (state.colors.entities) {
+    const colorsArray = []
+    // for (const colorId of colorsIds) {
+    //   for (const color of state.colors.entities) {
+    //     if (color._id === colorId) {
+    //       colorsArray.push(color)
+    //       break
+    //     }
+    //   }
+    // }
+    return colorsArray
+  }
+  return []
+}
 export const colorSelector = (colorId) => (state) =>
   state.colors.entities.find((color) => color._id === colorId)
 
