@@ -1,4 +1,4 @@
-import DashBoard from '../components/AdminDashBoard/DashBoard'
+import DashBoard from '../components/Admin/DashBoard'
 import { Outlet } from 'react-router-dom'
 import PageHeader from '../components/PageHeader/PageHeader'
 

@@ -1,0 +1,223 @@
+.dashBoard {
+  display: flex;
+  width: 100%;
+
+  .sideBar {
+    flex: 1;
+    border-right: 0.5px solid rgb(230, 227, 227);
+    min-height: 100vh;
+
+    .sideBarTop {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 0.5px solid rgb(230, 227, 227);
+
+      .logo {
+        font-size: 20px;
+        font-weight: 500;
+      }
+    }
+
+    .sideBarMain {
+      margin-top: 10px;
+
+      .item {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 5px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #ece8ff;
+        }
+
+        .icon {
+          font-size: 18px;
+          color: #7451f8;
+        }
+
+        span {
+          font-size: 14px;
+          font-weight: 500;
+          color: #888;
+        }
+      }
+    }
+  }
+
+  .content {
+    overflow: hidden;
+    flex: 6;
+
+
+    .main {
+      width: 100%;
+
+      .navbar {
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 0.5px solid rgb(230, 227, 227);
+        padding: 0 20px;
+
+        h2 {
+          font-size: 24px;
+          text-transform: capitalize;
+          font-weight: 400;
+          color: gray;
+          display: flex;
+          height: 100%;
+          align-items: center;
+        }
+
+        .link {
+          text-transform: uppercase;
+          color: green;
+          font-size: 16px;
+          font-weight: 600;
+          border: 1px solid green;
+          border-radius: 5px;
+          padding: 5px;
+          cursor: pointer;
+        }
+
+
+      }
+
+      .mainSection {
+        height: 500px;
+        overflow: auto;
+
+        .newProduct {
+          min-height: 400px;
+          align-items: center;
+          -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+          box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+          padding: 20px;
+          margin: 20px;
+          display: flex;
+
+          .left {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 100px;
+
+            img {
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+          }
+
+          .right {
+            flex: 3;
+
+            .form {
+              display: flex;
+              justify-content: space-between;
+              flex-wrap: wrap;
+              gap: 30px;
+
+              .formInput {
+                width: 45%;
+
+                label {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+
+                  .icon {
+                    font-size: 20px;
+                    cursor: pointer;
+                  }
+                }
+
+                input {
+                  width: 100%;
+                  padding: 5px;
+                  border: none;
+                  border-bottom: 1px solid gray;
+                }
+              }
+
+              button {
+                width: 300px;
+                margin: 30px 0 0 auto;
+              }
+            }
+          }
+        }
+
+        table {
+          width: 100%;
+          table-layout: fixed;
+          min-width: 1000px;
+          border-collapse: collapse;
+
+          thead tr {
+            position: relative;
+          }
+
+          thead th {
+            position: sticky;
+            top: 0;
+            background-color: #f6f9fc;
+            color: #8493a5;
+            font-size: 15px;
+          }
+
+          th, td {
+            width: 150px;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 20px;
+            word-break: break-word;
+            text-align: center;
+          }
+
+          td img {
+            background: #8493a5;
+            height: 60px;
+            width: 60px;
+            object-fit: contain;
+            border-radius: 15px;
+            border: 1px solid #ced0d2;
+
+          }
+
+          .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            button {
+              display: flex;
+              font-size: 30px;
+              cursor: pointer;
+            }
+
+            button:nth-child(1) {
+              color: #0298cf;
+            }
+
+            button:nth-child(2) {
+              color: red;
+
+            }
+          }
+
+          tbody tr:hover td {
+            color: #0298cf;
+            background-color: #f6f9fc;
+          }
+        }
+      }
+    }
+  }
+}

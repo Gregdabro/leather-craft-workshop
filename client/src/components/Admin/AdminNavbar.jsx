@@ -1,0 +1,18 @@
+import styles from './Admin.module.scss'
+import BackButton from '../BackButton/BackButton'
+import { Link } from 'react-router-dom'
+
+const AdminNavbar = ({ title, isBackButton, path, label }) => {
+  return (
+    <div className={styles.navbar}>
+      <h2>{title}</h2>
+      <input placeholder='Search...'/>
+      {isBackButton
+        ? <BackButton>Go Back</BackButton>
+        : <Link to={path} className={styles.link}>{label}</Link>
+      }
+    </div>
+  )
+}
+
+export default AdminNavbar

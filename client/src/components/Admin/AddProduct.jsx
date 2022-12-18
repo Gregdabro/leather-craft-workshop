@@ -1,23 +1,17 @@
-import styles from './AddProduct.module.scss'
+import styles from './Admin.module.scss'
 import Button from '../Button/Button'
 import { AiOutlineCloudUpload } from 'react-icons/ai'
 import { useState } from 'react'
-import BackButton from '../BackButton/BackButton'
+import AdminNavbar from './AdminNavbar'
 
 const AddProduct = () => {
   const [file, setFile] = useState('')
 
   return (
-    <div className={styles.content}>
-      <div className={styles.sectionTop}>
-        <h2>Products</h2>
-        <BackButton>Go back</BackButton>
-      </div>
-      <div className={styles.newProduct}>
-        <div className={styles.top}>
-          <h3>Add new Product</h3>
-        </div>
-        <div className={styles.bottom}>
+    <div className={styles.main}>
+      <AdminNavbar title="Add new Product" isBackButton={true}/>
+      <div className={styles.mainSection}>
+        <div className={styles.newProduct}>
           <div className={styles.left}>
             <img
               src={

@@ -9,11 +9,11 @@ import CartPage from './pages/CartPage'
 import ContactPage from './pages/ContactPage'
 import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
-import ProductsTable from './components/ProductsTable/ProductsTable'
-import AddProduct from './components/AddProduct/AddProduct'
-import UserTable from './components/UsersTable/UserTable'
 import AdminPage from './pages/AdminPage'
-import AdminHome from './components/AdminHome/AdminHome'
+import ProductsTable from './components/Admin/ProductsTable'
+import UserTable from './components/Admin/UserTable'
+import OrdersTable from './components/Admin/OrdersTable'
+import AddProduct from './components/Admin/AddProduct'
 
 const routes = (isLoggedIn, location, isAdmin) => [
   {
@@ -26,7 +26,7 @@ const routes = (isLoggedIn, location, isAdmin) => [
     children: [
       {
         path: '',
-        element: <AdminHome />
+        element: <ProductsTable />
       },
       {
         path: 'users',
@@ -35,6 +35,10 @@ const routes = (isLoggedIn, location, isAdmin) => [
       {
         path: 'products',
         element: <ProductsTable />
+      },
+      {
+        path: 'orders',
+        element: <OrdersTable />
       },
       {
         path: 'add-product',

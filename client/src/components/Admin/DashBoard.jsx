@@ -1,4 +1,4 @@
-import styles from './DashBoard.module.scss'
+import styles from './Admin.module.scss'
 import { Link } from 'react-router-dom'
 import { AiOutlineShop } from 'react-icons/ai'
 
@@ -24,7 +24,9 @@ const DashBoard = ({ children }) => {
           </Link>
         </div>
       </div>
-      {children}
+      <div className={styles.content}>
+        {children}
+      </div>
     </div>
   )
 }
