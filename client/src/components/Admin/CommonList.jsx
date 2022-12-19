@@ -1,29 +1,22 @@
-import { useState } from 'react'
 import CommonTable from './CommonTable'
 import { useSelector } from 'react-redux'
 import {
   productListSelector,
-  productLoadingStatusSelector
+  productLoadingSelector
 } from '../../store/productSlice'
-
 const CommonList = () => {
-  const products = useSelector(productListSelector())
-  console.log('CommonList products', products)
-  const isLoading = useSelector(productLoadingStatusSelector())
-  console.log('CommonList isLoading', isLoading)
-  const [sortBy, setSortBy] = useState({ path: 'name', order: 'asc' })
+  const productsList = useSelector(productListSelector())
+  const isProductsLoading = useSelector(productLoadingSelector())
 
-  const handleSort = (item) => {
-    setSortBy(item)
+  const handleDelete = (id) => {
+    console.log('id', id)
   }
 
-  if (isLoading === 'success') {
+  if (!isProductsLoading) {
     return (
-      <CommonTable
-        products={products}
-        onSort={handleSort}
-        selectedSort={sortBy}
-      />
+      <>
+        <CommonTable products={productsList} onDelete={handleDelete} />
+      </>
     )
   }
   return 'Loading...'

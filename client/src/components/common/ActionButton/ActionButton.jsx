@@ -1,17 +1,17 @@
 import { AiOutlineDelete, AiOutlineSetting } from 'react-icons/ai'
 
-const ActionButton = ({ action }) => {
+const ActionButton = ({ action, ...rest }) => {
   switch (action) {
     case 'REMOVE': {
       return (
-        <button>
+        <button {...rest}>
           <AiOutlineDelete />
         </button>
       )
     }
     case 'UPDATE': {
       return (
-        <button>
+        <button {...rest}>
           <AiOutlineSetting />
         </button>
       )

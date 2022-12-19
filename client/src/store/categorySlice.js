@@ -36,8 +36,9 @@ const categorySlice = createSlice({
 })
 const { reducer: categoryReducer } = categorySlice
 
-export const isLoadingSelector = () => (state) => state.categories.isLoading
+export const categoryLoadingSelector = () => (state) => state.colors.isLoading
 export const categoryListSelector = () => (state) => state.categories.entities
+
 export const categorySelector = (categoryId) => (state) =>
   state.categories.entities.find((category) => category._id === categoryId)
 

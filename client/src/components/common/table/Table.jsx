@@ -1,13 +1,12 @@
 import TableHeader from './TableHeader'
 import TableBody from './TableBody'
 
-const Table = ({ onSort, selectedSort, columns, data, children }) => {
-  console.log('Table data', data)
+const Table = ({ columns, data, children }) => {
   return (
     <table className="table">
       {children || (
         <>
-          <TableHeader {...{ onSort, selectedSort, columns }} />
+          <TableHeader {...{ columns }} />
           <TableBody {...{ columns, data }} />
         </>
       )}

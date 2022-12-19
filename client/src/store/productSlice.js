@@ -13,7 +13,7 @@ export const getProducts = createAsyncThunk(
 )
 const initialState = {
   entities: [],
-  isLoading: 'idle',
+  isLoading: true,
   error: null
 }
 
@@ -22,22 +22,21 @@ const productSlice = createSlice({
   initialState,
   extraReducers: {
     [getProducts.fulfilled]: (state, action) => {
-      state.isLoading = 'success'
+      state.isLoading = false
       state.entities = action.payload
       state.error = ''
     },
     [getProducts.pending]: (state) => {
-      state.isLoading = 'pending'
+      state.isLoading = true
     },
     [getProducts.rejected]: (state) => {
-      state.isLoading = 'failed'
+      state.isLoading = false
     }
   }
 })
 const { reducer: productReducer } = productSlice
 
-export const productLoadingStatusSelector = () => (state) =>
-  state.products.isLoading
+export const productLoadingSelector = () => (state) => state.products.isLoading
 export const productListSelector = () => (state) => state.products.entities
 export const productSelector = (productId) => (state) =>
   state.products.entities.find((product) => product._id === productId)

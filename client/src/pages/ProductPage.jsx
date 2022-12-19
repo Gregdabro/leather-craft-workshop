@@ -1,18 +1,15 @@
 import { Navigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import {
-  productLoadingStatusSelector,
-  productSelector
-} from '../store/productSlice'
+import { productLoadingSelector, productSelector } from '../store/productSlice'
 import PageHeader from '../components/PageHeader/PageHeader'
 import Product from '../components/Product/Product'
 
 const ProductPage = () => {
   const { id } = useParams()
-  const loadingStatus = useSelector(productLoadingStatusSelector)
+  const isLoading = useSelector(productLoadingSelector())
   const product = useSelector(productSelector(id))
 
-  if (loadingStatus !== 'idle' && loadingStatus !== 'pending' && !product) {
+  if (isLoading) {
     return <Navigate to="/product" />
   }
 

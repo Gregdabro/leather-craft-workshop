@@ -1,10 +1,18 @@
 import { useSelector } from 'react-redux'
-import { categorySelector, isLoadingSelector } from '../../store/categorySlice'
+import { categoryLoadingSelector, categorySelector } from '../../store/categorySlice'
+import Color from '../Colors/Color'
 
 const Category = ({ id }) => {
-  const isLoading = useSelector(isLoadingSelector())
   const category = useSelector(categorySelector(id))
-  return <>{!isLoading ? <p>{category}</p> : 'Loading...'}</>
+  const isLoading = useSelector(categoryLoadingSelector())
+  return (
+    <>
+      {!isLoading
+        ? (<p>{category?.name}</p>)
+        : 'Loading...'
+      }
+    </>
+  )
 }
 
 export default Category

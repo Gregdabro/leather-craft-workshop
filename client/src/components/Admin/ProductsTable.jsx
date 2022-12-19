@@ -2,7 +2,14 @@ import styles from './Admin.module.scss'
 import IMAGES from '../../constants/images'
 import { AiOutlineDelete, AiOutlineSetting } from 'react-icons/ai'
 import AdminNavbar from './AdminNavbar'
+import { useSelector } from 'react-redux'
+import {
+  productListSelector,
+  productLoadingStatusSelector
+} from '../../store/productSlice'
 const ProductsTable = () => {
+  const products = useSelector(productListSelector())
+  const isLoading = useSelector(productLoadingStatusSelector())
   return (
     <>
       <div className={styles.main}>
@@ -26,90 +33,31 @@ const ProductsTable = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>123435435</td>
-                <td>
-                  <img src={IMAGES.garrison_bridle} />
-                </td>
-                <td>bridlay barlay</td>
-                <td>somthing description</td>
-                <td>belts</td>
-                <td>red, yellow, blue</td>
-                <td>340</td>
-                <td>
-                  <div className={styles.buttons}>
-                    <button>
-                      <AiOutlineSetting />
-                    </button>
-                    <button>
-                      <AiOutlineDelete />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>123435435</td>
-                <td>
-                  <img src={IMAGES.garrison_bridle} />
-                </td>
-                <td>bridlay barlay</td>
-                <td>somthing description</td>
-                <td>belts</td>
-                <td>red, yellow, blue</td>
-                <td>340</td>
-                <td>
-                  <div className={styles.buttons}>
-                    <button>
-                      <AiOutlineSetting />
-                    </button>
-                    <button>
-                      <AiOutlineDelete />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>123435435</td>
-                <td>
-                  <img src={IMAGES.garrison_bridle} />
-                </td>
-                <td>bridlay barlay</td>
-                <td>somthing description</td>
-                <td>belts</td>
-                <td>red, yellow, blue</td>
-                <td>340</td>
-                <td>
-                  <div className={styles.buttons}>
-                    <button>
-                      <AiOutlineSetting />
-                    </button>
-                    <button>
-                      <AiOutlineDelete />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>123435435</td>
-                <td>
-                  <img src={IMAGES.garrison_bridle} />
-                </td>
-                <td>bridlay barlay</td>
-                <td>somthing description</td>
-                <td>belts</td>
-                <td>red, yellow, blue</td>
-                <td>340</td>
-                <td>
-                  <div className={styles.buttons}>
-                    <button>
-                      <AiOutlineSetting />
-                    </button>
-                    <button>
-                      <AiOutlineDelete />
-                    </button>
-                  </div>
-                </td>
-              </tr>
+              {isLoading === 'success'
+                ? products.map((item) => (
+                    <tr key={item._id}>
+                      <td>{item._id}</td>
+                      <td>
+                        <img src={IMAGES[item.image]} />
+                      </td>
+                      <td>{item.name}</td>
+                      <td>{item.description}</td>
+                      <td>{item.category}</td>
+                      <td>{item.name}</td>
+                      <td>{item.price}</td>
+                      <td>
+                        <div className={styles.buttons}>
+                          <button>
+                            <AiOutlineSetting />
+                          </button>
+                          <button>
+                            <AiOutlineDelete />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                : 'Loading...'}
             </tbody>
           </table>
         </div>

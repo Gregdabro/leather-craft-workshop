@@ -10,10 +10,6 @@ import ContactPage from './pages/ContactPage'
 import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
 import AdminPage from './pages/AdminPage'
-import ProductsTable from './components/Admin/ProductsTable'
-import UserTable from './components/Admin/UserTable'
-import AddProduct from './components/Admin/AddProduct'
-import CommonList from './components/Admin/CommonList'
 
 const routes = (isLoggedIn, location, isAdmin) => [
   {
@@ -21,34 +17,34 @@ const routes = (isLoggedIn, location, isAdmin) => [
     element: <MainPage />
   },
   {
-    path: 'admin',
+    path: '/admin/*',
     element: isAdmin ? (
       <AdminPage />
     ) : (
       <Navigate to="/auth/login" state={{ referrer: location }} />
-    ),
-    children: [
-      {
-        path: '',
-        element: <ProductsTable />
-      },
-      {
-        path: 'users',
-        element: <UserTable />
-      },
-      {
-        path: 'products',
-        element: <ProductsTable />
-      },
-      // {
-      //   path: 'orders',
-      //   element: <CommonList />
-      // },
-      {
-        path: 'add-product',
-        element: <AddProduct />
-      }
-    ]
+    )
+    // children: [
+    //   {
+    //     path: '',
+    //     element: <ProductsTable />
+    //   },
+    //   {
+    //     path: 'users',
+    //     element: <UserTable />
+    //   },
+    //   {
+    //     path: 'products',
+    //     element: <ProductsTable />
+    //   },
+    //   {
+    //     path: 'orders',
+    //     element: <CommonList />
+    //   },
+    //   {
+    //     path: 'add-product',
+    //     element: <AddProduct />
+    //   }
+    // ]
   },
   {
     path: 'auth',
