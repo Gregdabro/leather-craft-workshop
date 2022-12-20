@@ -85,7 +85,7 @@ class AuthController {
 
     async logout(req, res, next) {
         try {
-            // todo: реализовать logout
+            // todo: logout
         } catch (e) {
             return next(ApiError.internalError(e.message))
 

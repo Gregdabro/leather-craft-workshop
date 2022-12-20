@@ -9,8 +9,7 @@ const ColorList = ({ colorsIds }) => {
     <>
       {!isLoading
         ? colorList.map((item) => <Color key={item._id} {...item} />)
-        : 'Loading...'
-      }
+        : 'Loading...'}
     </>
   )
 }

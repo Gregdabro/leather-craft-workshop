@@ -1,12 +1,12 @@
-const Cart = require("../models/Cart")
+const Order = require("../models/Order")
 const ApiError = require("../error/ApiError")
 
-class CartController {
+class OrderController {
     async create(req, res, next) {
         try {
-            const newCart = new Cart(req.body)
-            const savedCart = await newCart.save()
-            res.status(201).json(savedCart)
+            const newOrder = new Order(req.body)
+            const savedOrder = await newOrder.save()
+            res.status(201).json(savedOrder);
 
         } catch (e) {
             next(ApiError.badRequestError(e.message))
@@ -15,14 +15,14 @@ class CartController {
 
     async update(req, res, next) {
         try {
-            const updatedCart = await Cart.findByIdAndUpdate(
+            const updatedOrder = await Order.findByIdAndUpdate(
               req.params.id,
               {
                   $set: req.body,
               },
               { new: true }
             )
-            res.status(200).json(updatedCart)
+            res.status(200).json(updatedOrder)
 
         } catch (e) {
             next(ApiError.badRequestError(e.message))
@@ -31,8 +31,8 @@ class CartController {
 
     async remove(req, res, next) {
         try {
-            await Cart.findByIdAndDelete(req.params.id)
-            res.status(200).json("Cart has been deleted...")
+            await Order.findByIdAndDelete(req.params.id)
+            res.status(200).json("Order has been deleted...")
 
         } catch (e) {
             next(ApiError.badRequestError(e.message))
@@ -41,8 +41,8 @@ class CartController {
 
     async getOne(req, res, next) {
         try {
-            const cart = await Cart.findOne({ userId: req.params.userId })
-            res.status(200).json(cart)
+            const orders = await Order.find({ userId: req.params.userId })
+            res.status(200).json(orders)
         } catch (e) {
             next(ApiError.badRequestError(e.message))
         }
@@ -50,12 +50,12 @@ class CartController {
 
     async getAll(req, res, next) {
         try {
-            const carts = await Cart.find()
-            res.status(200).json(carts)
+            const orders = await Order.find()
+            res.status(200).json(orders)
         } catch (e) {
             next(ApiError.badRequestError(e.message))
         }
     }
 }
 
-module.exports = new CartController()
+module.exports = new OrderController()

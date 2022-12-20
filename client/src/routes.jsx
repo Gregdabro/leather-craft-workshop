@@ -68,18 +68,26 @@ const routes = (isLoggedIn, location, isAdmin) => [
       }
     ]
   },
+  // {
+  //   path: 'product',
+  //   element: <ProductsLayout />,
+  //   children: [
+  //     {
+  //       path: '',
+  //       element: <ProductListPage />
+  //     },
+  //     {
+  //       path: ':id',
+  //       element: <ProductPage />
+  //     }
+  //   ]
+  // },
   {
     path: 'product',
     element: <ProductsLayout />,
     children: [
-      {
-        path: '',
-        element: <ProductListPage />
-      },
-      {
-        path: ':id',
-        element: <ProductPage />
-      }
+      { path: '', element: <ProductListPage /> },
+      { path: ':productId', element: <ProductPage /> }
     ]
   },
   {

@@ -12,9 +12,13 @@ import { useSelector } from 'react-redux'
 import useLogout from '../../hooks/useLogout'
 import { isLoggedInSelector } from '../../store/authSlice'
 import { NavLink } from 'react-router-dom'
+import { cartQuantitySelector } from '../../store/cartSlice'
+import { AiOutlineShopping } from 'react-icons/ai'
 
 const Navbar = () => {
   const isLoggedIn = useSelector(isLoggedInSelector())
+  const quantity = useSelector(cartQuantitySelector())
+  console.log('quantity', quantity)
   const handleLogout = useLogout()
 
   return (
@@ -58,8 +62,11 @@ const Navbar = () => {
             <a href={AUTH_ROUTE + '/signup'}>signup</a>
           </div>
         )}
-        <div>
-          <a href={CART_ROUTE}>cart</a>
+        <div className={styles.cartLink}>
+          <a href={CART_ROUTE}>
+            <AiOutlineShopping/>
+            <div><span>{quantity}</span></div>
+          </a>
         </div>
       </div>
     </nav>

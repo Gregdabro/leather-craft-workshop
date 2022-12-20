@@ -1,4 +1,5 @@
 import './App.scss'
+import 'react-toastify/dist/ReactToastify.css'
 import Header from './components/Header/Header'
 import { useLocation, useRoutes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'

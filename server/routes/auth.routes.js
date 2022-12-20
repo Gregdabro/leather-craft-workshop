@@ -18,7 +18,7 @@ router.post("/login", [
 router.post("/token", authController.refresh)
 
 // todo: реализовать logout
-// router.post("/logout", authController.logout)
+router.post("/logout", authController.logout)
 
 // todo: реализовать delete User
 // router.delete("/user/:userId", authController.remove)

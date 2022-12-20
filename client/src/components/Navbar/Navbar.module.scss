@@ -32,5 +32,32 @@
         }
       }
     }
+
+    .cartLink{
+
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        right: 8px;
+        background-color: #4b70e2;
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        span {
+          margin-bottom: 3px;
+          line-height: 0;
+          color: #f6f9fc;
+        }
+      }
+      svg {
+        font-size: 30px;
+      }
+
+
+    }
+
   }
 }

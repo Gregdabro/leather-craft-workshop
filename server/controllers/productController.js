@@ -29,7 +29,7 @@ class ProductController {
         try {
             const { productId } = req.params
 
-            const removedProduct = await Product.findByIdAndUpdate(productId)
+            const removedProduct = await Product.findById(productId)
 
             await removedProduct.remove()
             return res.send(null)

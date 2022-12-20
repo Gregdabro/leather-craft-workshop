@@ -1,8 +1,16 @@
 const {Schema, model} = require("mongoose")
-// todo: реализовать модель корзины
+
 const schema = new Schema({
-    userId: { type: String, required: true },
-    products: [{type: Schema.Types.ObjectId, ref: "Product"}]
+    userId: {type: Schema.Types.ObjectId, required: true,ref: "User"},
+    products: [
+      {
+          productId: { type: Schema.Types.ObjectId, required: true,ref: "Product" },
+          quantity: {
+              type: Number,
+              default: 1
+          }
+      }
+    ]
 }, {
     timestamps: true
 })

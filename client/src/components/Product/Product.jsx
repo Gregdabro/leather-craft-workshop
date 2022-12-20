@@ -4,10 +4,30 @@ import { useState } from 'react'
 import Button from '../Button/Button'
 import { HiOutlineHeart } from 'react-icons/hi2'
 import Quantity from '../Quantity/Quantity'
+import { useDispatch, useSelector } from 'react-redux'
+import { productSelector } from '../../store/productSlice'
+import { useParams } from 'react-router-dom'
+import { addProduct } from '../../store/cartSlice'
 
 const Product = () => {
+  const { productId } = useParams()
+  const dispatch = useDispatch()
+  const [quantity, setQuantity] = useState(1)
+  const product = useSelector(productSelector(productId))
+
   const [selectedImg, setSelectedImg] = useState(0)
   const images = [IMAGES.damask_bridle, IMAGES.berkley_bridle]
+  const handleAddToCart = (product) => {
+    dispatch(addProduct({ ...product, quantity }))
+  }
+
+  const handleQuantity = (type) => {
+    if (type === 'decrement') {
+      quantity > 1 && setQuantity(quantity - 1)
+    } else {
+      setQuantity(quantity + 1)
+    }
+  }
 
   return (
     <div className={styles.product}>
@@ -32,8 +52,16 @@ const Product = () => {
           repellat reprehenderit similique.
         </p>
 
-        <Quantity />
-        <Button>add to cart</Button>
+        <Quantity>
+          <button
+            onClick={() => handleQuantity('decrement')}
+          >
+            -
+          </button>
+          <span>{quantity}</span>
+          <button onClick={() => handleQuantity('increment')}>+</button>
+        </Quantity>
+        <Button onClick={() => handleAddToCart(product)}>add to cart</Button>
         <div className={styles.links}>
           <div className={styles.item}>
             <HiOutlineHeart />
