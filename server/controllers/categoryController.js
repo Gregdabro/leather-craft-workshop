@@ -7,7 +7,7 @@ class CategoryController {
         try {
             const { name } = req.body
             const category = await Category.create({ name })
-            res.status(200).send(category)
+            res.status(201).send(category)
         } catch (e) {
             next(ApiError.badRequestError(e.message))
         }

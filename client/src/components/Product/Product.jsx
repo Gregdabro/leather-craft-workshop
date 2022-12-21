@@ -12,20 +12,21 @@ import { addProduct } from '../../store/cartSlice'
 const Product = () => {
   const { productId } = useParams()
   const dispatch = useDispatch()
-  const [quantity, setQuantity] = useState(1)
+  const [amount, setAmount] = useState(1)
   const product = useSelector(productSelector(productId))
 
   const [selectedImg, setSelectedImg] = useState(0)
   const images = [IMAGES.damask_bridle, IMAGES.berkley_bridle]
   const handleAddToCart = (product) => {
-    dispatch(addProduct({ ...product, quantity }))
+    dispatch(addProduct({ ...product, amount }))
+    setAmount(1)
   }
 
   const handleQuantity = (type) => {
     if (type === 'decrement') {
-      quantity > 1 && setQuantity(quantity - 1)
+      amount > 1 && setAmount(amount - 1)
     } else {
-      setQuantity(quantity + 1)
+      setAmount(amount + 1)
     }
   }
 
@@ -52,15 +53,13 @@ const Product = () => {
           repellat reprehenderit similique.
         </p>
 
-        <Quantity>
-          <button
-            onClick={() => handleQuantity('decrement')}
-          >
-            -
-          </button>
-          <span>{quantity}</span>
-          <button onClick={() => handleQuantity('increment')}>+</button>
-        </Quantity>
+        <button
+          onClick={() => handleQuantity('decrement')}
+        >
+          -
+        </button>
+        <span>{amount}</span>
+        <button onClick={() => handleQuantity('increment')}>+</button>
         <Button onClick={() => handleAddToCart(product)}>add to cart</Button>
         <div className={styles.links}>
           <div className={styles.item}>

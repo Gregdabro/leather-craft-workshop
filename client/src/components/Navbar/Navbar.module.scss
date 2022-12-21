@@ -34,22 +34,23 @@
     }
 
     .cartLink{
-
-      div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      position: relative;
+      .amountWrapper {
         position: absolute;
-        top: 0;
-        right: 8px;
-        background-color: #4b70e2;
-        width: 20px;
-        height: 20px;
-        border-radius: 100%;
-        span {
-          margin-bottom: 3px;
-          line-height: 0;
-          color: #f6f9fc;
+        top: -0.6rem;
+        right: -0.6rem;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        background: royalblue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        p {
+          display: flex;
+          color: white;
+          margin-bottom: 0;
+          font-size: 1.25rem;
         }
       }
       svg {

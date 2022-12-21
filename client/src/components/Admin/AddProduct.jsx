@@ -6,7 +6,7 @@ import AdminNavbar from './AdminNavbar'
 
 const AddProduct = () => {
   const [file, setFile] = useState('')
-
+  console.log('file', file)
   return (
     <div className={styles.main}>
       <AdminNavbar title="Add new Product" isBackButton={true} />

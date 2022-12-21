@@ -6,7 +6,7 @@ class ProductController {
         try {
             const { name, image, category, colors, rate, price, description, isFavorite } = req.body
             const product = await Product.create({ name, image, category, colors, rate, price, description, isFavorite })
-            res.status(200).send(product)
+            res.status(201).send(product)
         } catch (e) {
             next(ApiError.badRequestError(e.message))
         }

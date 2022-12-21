@@ -4,12 +4,10 @@ import { AiOutlineDelete, AiOutlineSetting } from 'react-icons/ai'
 import AdminNavbar from './AdminNavbar'
 import { useSelector } from 'react-redux'
 import {
-  productListSelector,
-  productLoadingStatusSelector
+  productListSelector
 } from '../../store/productSlice'
 const ProductsTable = () => {
   const products = useSelector(productListSelector())
-  const isLoading = useSelector(productLoadingStatusSelector())
   return (
     <>
       <div className={styles.main}>
@@ -33,8 +31,7 @@ const ProductsTable = () => {
               </tr>
             </thead>
             <tbody>
-              {isLoading === 'success'
-                ? products.map((item) => (
+              {products ? products.map((item) => (
                     <tr key={item._id}>
                       <td>{item._id}</td>
                       <td>

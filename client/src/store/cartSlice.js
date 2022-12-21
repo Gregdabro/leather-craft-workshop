@@ -1,60 +1,93 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
+import {
+  getCartItems,
+  getItemsQuantity,
+  getCartTotal,
+  setCartItems,
+  setCartTotal,
+  setItemsQuantity,
+  removeCart
+} from '../services/localStorage.service'
+
+const cartItems = getCartItems()
+const quantities = getItemsQuantity()
+const total = getCartTotal()
 
 const initialState = {
-  entities: localStorage.getItem('entities')
-    ? JSON.parse(localStorage.getItem('entities'))
-    : [],
-  quantity: localStorage.getItem('quantity')
-    ? JSON.parse(localStorage.getItem('quantity'))
-    : 0,
-  total: localStorage.getItem('total')
-    ? JSON.parse(localStorage.getItem('total'))
-    : 0,
-  cartTotalQuantity: 0,
-  cartTotalAmount: 0
+  entities: cartItems || [],
+  itemQuantities: quantities || 0,
+  total: total || 0
 }
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addFastToCart(state, action) {
-      const itemIndex = state.entities.findIndex(
-        (item) => item._id === action.payload._id
-      )
-      if (itemIndex >= 0) {
-        state.entities[itemIndex].cartQuantity += 1
-        toast.info(`${state.entities[itemIndex].name} cart quantity`, {
+    addProduct(state, action) {
+      const itemExist = state.entities.find(item => item._id === action.payload._id)
+      const itemIndex = state.entities.findIndex((item) => item._id === action.payload._id)
+      if (itemExist) {
+        state.entities[itemIndex].amount += action.payload.amount
+        state.total += action.payload.price * action.payload.amount
+        toast.info(`${state.entities[itemIndex].name} добавлено еще ${action.payload.amount} `, {
           position: 'bottom-left'
         })
       } else {
-        const tempProduct = { ...action.payload, cartQuantity: 1 }
-        state.entities.push(tempProduct)
-        toast.success(`${action.payload.name} added to cart`, {
+        state.itemQuantities += 1
+        state.entities.push(action.payload)
+        state.total += action.payload.price * action.payload.amount
+        setItemsQuantity(state.itemQuantities)
+        toast.success(`${action.payload.name} добавлен в корзину`, {
           position: 'bottom-left'
         })
       }
-      localStorage.setItem('cartItems', JSON.stringify(state.entities))
+      setCartItems(state.entities)
+      setCartTotal(state.total)
     },
-    addProduct: (state, action) => {
-      console.log('action price', action.payload.price)
-      console.log('action quantity', action.payload.quantity)
-      state.quantity += 1
-      state.entities.push(action.payload)
-      state.total += action.payload.price * action.payload.quantity
-      localStorage.setItem('entities', JSON.stringify(state.entities))
-      localStorage.setItem('quantity', JSON.stringify(state.quantity))
-      localStorage.setItem('total', JSON.stringify(state.total))
+    increase: (state, action) => {
+      const itemIndex = state.entities.findIndex((item) => item._id === action.payload)
+      state.entities[itemIndex].amount += 1
+      state.total += state.entities[itemIndex].price
+      setCartItems(state.entities)
+      setCartTotal(state.total)
+    },
+    decrease: (state, action) => {
+      const itemIndex = state.entities.findIndex((item) => item._id === action.payload)
+      state.entities[itemIndex].amount -= 1
+      state.total -= state.entities[itemIndex].price
+      setCartItems(state.entities)
+      setCartTotal(state.total)
+    },
+    removeItem: (state, action) => {
+      const findEl = state.entities.find((item) => item._id === action.payload)
+      state.total -= findEl.amount * findEl.price
+      state.entities = state.entities.filter(item => item._id !== action.payload)
+      state.itemQuantities -= 1
+      setCartItems(state.entities)
+      setItemsQuantity(state.itemQuantities)
+      setCartTotal(state.total)
+      if (state.entities.length === 0) {
+        removeCart()
+      }
+    },
+    clearCart: (state, action) => {
+      state.entities = []
+      state.itemQuantities = 0
+      state.total = 0
+      removeCart()
     }
   }
 })
 
 export const { reducer: cartReducer, actions } = cartSlice
 
-export const { addFastToCart, addProduct } = actions
+export const { addProduct, increase, decrease, removeItem, clearCart } = actions
 
 export const cartItemsSelector = () => (state) => state.cart.entities
-export const cartQuantitySelector = () => (state) => state.cart.quantity
+
+export const cartItemQuantitiesSelector = () => (state) => state.cart.itemQuantities
+
+export const cartTotalSelector = () => (state) => state.cart.total
 
 export default cartReducer
