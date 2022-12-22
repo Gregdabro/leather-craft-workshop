@@ -8,7 +8,7 @@
     min-height: 100vh;
 
     .sideBarTop {
-      height: 50px;
+      height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -50,13 +50,13 @@
 
   .content {
     overflow: hidden;
-    //flex: 6;
+    flex: 6;
 
     .main {
       width: 100%;
 
       .navbar {
-        height: 50px;
+        height: 80px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -86,7 +86,7 @@
       }
 
       .mainSection {
-        height: 500px;
+        max-height: 900px;
         overflow: auto;
 
         .newProduct {
@@ -164,9 +164,10 @@
           thead th {
             position: sticky;
             top: 0;
-            background-color: #f6f9fc;
-            color: #8493a5;
-            font-size: 15px;
+            background-color: whitesmoke;
+            color: #343434;
+            text-transform: uppercase;
+            font-size: 13px;
           }
 
           th,
@@ -212,8 +213,10 @@
           }
 
           tbody tr:hover td {
-            color: #0298cf;
-            background-color: #f6f9fc;
+            background-color: rgba(0, 0, 0, 0.04);
+          }
+          tbody tr:nth-child(1) {
+            rowspan: 3;
           }
         }
       }

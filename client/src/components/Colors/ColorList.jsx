@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux'
-import { colorLoadingSelector, getColorsByIds } from '../../store/colorSlice'
+import { getColorsByIds, isLoadingColorSelector } from '../../store/colorSlice'
 import Color from './Color'
 
-const ColorList = ({ colorsIds }) => {
-  const isLoading = useSelector(colorLoadingSelector())
-  const colorList = useSelector(getColorsByIds(colorsIds))
+const ColorList = ({ colors }) => {
+  console.log('colorsIds', colors)
+  const isLoading = useSelector(isLoadingColorSelector())
+  const colorList = useSelector(getColorsByIds(colors))
   return (
     <>
       {!isLoading

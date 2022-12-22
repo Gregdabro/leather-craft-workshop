@@ -8,7 +8,7 @@ const AdminPage = () => {
     <>
       <PageHeader title="admin" subTitle="Dashboard" />
       <DashBoard>
-        <Outlet/>
+        <Outlet />
         {/*<Routes>*/}
         {/*  <Route path={'/products'} element={<CommonList />} />*/}
         {/*  <Route path={'/users'} element={<CommonList />} />*/}

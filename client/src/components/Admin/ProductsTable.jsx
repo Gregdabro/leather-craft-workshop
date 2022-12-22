@@ -3,9 +3,7 @@ import IMAGES from '../../constants/images'
 import { AiOutlineDelete, AiOutlineSetting } from 'react-icons/ai'
 import AdminNavbar from './AdminNavbar'
 import { useSelector } from 'react-redux'
-import {
-  productListSelector
-} from '../../store/productSlice'
+import { productListSelector } from '../../store/productSlice'
 const ProductsTable = () => {
   const products = useSelector(productListSelector())
   return (
@@ -31,7 +29,8 @@ const ProductsTable = () => {
               </tr>
             </thead>
             <tbody>
-              {products ? products.map((item) => (
+              {products
+                ? products.map((item) => (
                     <tr key={item._id}>
                       <td>{item._id}</td>
                       <td>

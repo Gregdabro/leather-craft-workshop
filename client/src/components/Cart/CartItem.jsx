@@ -4,8 +4,17 @@ import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 import IMAGES from '../../constants/images'
 import { useDispatch } from 'react-redux'
 import { decrease, increase, removeItem } from '../../store/cartSlice'
+import ProductColorList from '../UI/ProductColorList/ProductColorList'
 
-const CartItem = ({ _id: id, image, name, category, colors, amount, price }) => {
+const CartItem = ({
+  _id: id,
+  image,
+  name,
+  colors,
+  amount,
+  price,
+  description
+}) => {
   const dispatch = useDispatch()
   const handleIncrement = (payload) => {
     dispatch(increase(payload))
@@ -18,36 +27,27 @@ const CartItem = ({ _id: id, image, name, category, colors, amount, price }) => 
     dispatch(removeItem(payload))
   }
   return (
-    <div className={styles.item} key={ id }>
+    <div className={styles.item} key={id}>
       <div className={styles.itemInfo}>
-        <img src={IMAGES[image]}/>
+        <img src={IMAGES[image]} />
         <div className={styles.details}>
           <h2>{name}</h2>
-          <p className={styles.size}>Category:<span>{category}</span></p>
-          <p className={styles.color}>Colors:  {colors.map(c => <span key={c}>{c}</span>)}</p>
+          <p className={styles.size}>{description}</p>
+          <ProductColorList colors={colors} />
         </div>
       </div>
       <div className={styles.quantity}>
-        <button
-          className='amount-btn'
-          onClick={() => handleIncrement(id)}
-        >
-          <AiOutlinePlus/>
+        <button className="amount-btn" onClick={() => handleIncrement(id)}>
+          <AiOutlinePlus />
         </button>
         <p>{amount}</p>
-        <button
-          className='amount-btn'
-          onClick={() => handleDecrement(id)}
-        >
-          <AiOutlineMinus/>
+        <button className="amount-btn" onClick={() => handleDecrement(id)}>
+          <AiOutlineMinus />
         </button>
       </div>
       <div className={styles.subTotal}>{`${amount * price}`}</div>
-      <button
-        className={styles.delete}
-        onClick={() => handleRemoveItem(id)}
-      >
-        <AiOutlineDelete/>
+      <button className={styles.delete} onClick={() => handleRemoveItem(id)}>
+        <AiOutlineDelete />
       </button>
     </div>
   )

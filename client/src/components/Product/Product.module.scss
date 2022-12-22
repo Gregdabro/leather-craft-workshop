@@ -60,24 +60,23 @@
       text-align: justify;
     }
 
-    //.quantity {
-    //  display: flex;
-    //  align-items: center;
-    //  gap: 10px;
-    //
-    //
-    //
-    //  button,span {
-    //    display: flex;
-    //    height: 40px;
-    //    width: 40px;
-    //    justify-content: center;
-    //    align-items: center;
-    //  }
-    //  span {
-    //    width: 10px;
-    //  }
-    //}
+    .amount {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      button,
+      span {
+        display: flex;
+        height: 40px;
+        width: 40px;
+        justify-content: center;
+        align-items: center;
+      }
+      span {
+        width: 10px;
+      }
+    }
 
     .links {
       display: flex;

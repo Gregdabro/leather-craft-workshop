@@ -14,6 +14,8 @@ import ProductsTable from './components/Admin/ProductsTable'
 import UserTable from './components/Admin/UserTable'
 import CommonList from './components/Admin/CommonList'
 import AddProduct from './components/Admin/AddProduct'
+import Cart from './components/Cart/Cart'
+import CartSuccess from './components/Cart/CartSuccess'
 
 const routes = (isLoggedIn, location, isAdmin) => [
   {
@@ -72,20 +74,6 @@ const routes = (isLoggedIn, location, isAdmin) => [
       }
     ]
   },
-  // {
-  //   path: 'product',
-  //   element: <ProductsLayout />,
-  //   children: [
-  //     {
-  //       path: '',
-  //       element: <ProductListPage />
-  //     },
-  //     {
-  //       path: ':id',
-  //       element: <ProductPage />
-  //     }
-  //   ]
-  // },
   {
     path: 'product',
     element: <ProductsLayout />,
@@ -100,7 +88,15 @@ const routes = (isLoggedIn, location, isAdmin) => [
       <CartPage />
     ) : (
       <Navigate to="/auth/login" state={{ referrer: location }} />
-    )
+    ),
+    children: [
+      {
+        path: '', element: <Cart/>
+      },
+      {
+        path: 'success', element: <CartSuccess/>
+      }
+    ]
   },
   {
     path: '/contact',

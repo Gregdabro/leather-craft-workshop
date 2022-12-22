@@ -35,7 +35,7 @@ export function getTokenExpiresDate() {
   return localStorage.getItem(EXPIRES_KEY)
 }
 export function getUser() {
-  return localStorage.getItem(USER_KEY)
+  return JSON.parse(localStorage.getItem(USER_KEY))
 }
 
 export function getCartItems() {

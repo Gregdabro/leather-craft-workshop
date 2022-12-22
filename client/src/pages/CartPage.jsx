@@ -1,11 +1,14 @@
-import Cart from '../components/Cart/Cart'
 import PageHeader from '../components/PageHeader/PageHeader'
+import styles from '../components/Cart/Cart.module.scss'
+import { Outlet } from 'react-router-dom'
 
 const CartPage = () => {
   return (
     <>
       <PageHeader title="cart" subTitle="Leather Belt" isBackButton={true} />
-      <Cart />
+      <div className={styles.cart}>
+        <Outlet/>
+      </div>
     </>
   )
 }

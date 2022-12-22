@@ -5,15 +5,14 @@ const schema = new Schema({
   products: [
     {
       productId: { type: Schema.Types.ObjectId, required: true,ref: "Product" },
-      quantity: {
+      selectedColor: {type: String},
+      amount: {
         type: Number,
         default: 1
       }
     }
   ],
-  amount: {type: Number, required: true},
-  address: { type: Object, required: true },
-  status: { type: String, default: "pending"}
+  total: {type: Number, required: true}
 }, {
   timestamps: true
 })

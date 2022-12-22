@@ -34,7 +34,7 @@ const colorSlice = createSlice({
 const { reducer: colorReducer } = colorSlice
 
 // Selectors
-export const colorLoadingSelector = () => (state) => state.colors.isLoading
+export const isLoadingColorSelector = () => (state) => state.colors.isLoading
 export const colorListSelector = () => (state) => state.colors.entities
 
 export const getColorsByIds = (colorsIds) => (state) => {

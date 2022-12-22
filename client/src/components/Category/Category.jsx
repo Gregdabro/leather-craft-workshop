@@ -3,7 +3,6 @@ import {
   categoryLoadingSelector,
   categorySelector
 } from '../../store/categorySlice'
-import Color from '../Colors/Color'
 
 const Category = ({ id }) => {
   const category = useSelector(categorySelector(id))

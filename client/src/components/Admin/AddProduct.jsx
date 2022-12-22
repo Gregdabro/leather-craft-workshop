@@ -3,6 +3,7 @@ import Button from '../Button/Button'
 import { AiOutlineCloudUpload } from 'react-icons/ai'
 import { useState } from 'react'
 import AdminNavbar from './AdminNavbar'
+import TextField from '../common/form/TextInput/TextInput'
 
 const AddProduct = () => {
   const [file, setFile] = useState('')

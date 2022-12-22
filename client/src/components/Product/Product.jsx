@@ -1,20 +1,20 @@
 import styles from './Product.module.scss'
 import IMAGES from '../../constants/images'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Button from '../Button/Button'
 import { HiOutlineHeart } from 'react-icons/hi2'
-import Quantity from '../Quantity/Quantity'
 import { useDispatch, useSelector } from 'react-redux'
 import { productSelector } from '../../store/productSlice'
 import { useParams } from 'react-router-dom'
 import { addProduct } from '../../store/cartSlice'
+import ProductColorList from '../UI/ProductColorList/ProductColorList'
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 
 const Product = () => {
   const { productId } = useParams()
   const dispatch = useDispatch()
   const [amount, setAmount] = useState(1)
   const product = useSelector(productSelector(productId))
-
   const [selectedImg, setSelectedImg] = useState(0)
   const images = [IMAGES.damask_bridle, IMAGES.berkley_bridle]
   const handleAddToCart = (product) => {
@@ -52,14 +52,16 @@ const Product = () => {
           magni mollitia nesciunt non odit perferendis quas quisquam quos
           repellat reprehenderit similique.
         </p>
-
-        <button
-          onClick={() => handleQuantity('decrement')}
-        >
-          -
-        </button>
-        <span>{amount}</span>
-        <button onClick={() => handleQuantity('increment')}>+</button>
+        <ProductColorList colors={product.colors} />
+        <div className={styles.amount}>
+          <button onClick={() => handleQuantity('decrement')}>
+            <AiOutlineMinus />
+          </button>
+          <span>{amount}</span>
+          <button onClick={() => handleQuantity('increment')}>
+            <AiOutlinePlus />
+          </button>
+        </div>
         <Button onClick={() => handleAddToCart(product)}>add to cart</Button>
         <div className={styles.links}>
           <div className={styles.item}>

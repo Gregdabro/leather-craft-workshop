@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
-import {
+import localStorageService, {
   getCartItems,
   getItemsQuantity,
   getCartTotal,
@@ -9,6 +9,26 @@ import {
   setItemsQuantity,
   removeCart
 } from '../services/localStorage.service'
+import { setMessage } from './messageSlice'
+import orderService from '../services/order.service'
+
+export const createOrder = createAsyncThunk(
+  'cart/createOrder',
+  async ({ payload }, thunkAPI) => {
+    try {
+      const { _id } = localStorageService.getUser()
+      const response = await orderService.create({ ...payload, userId: _id })
+      return response
+    } catch (e) {
+      const message =
+        (e.response && e.response.data && e.response.data.message) ||
+        e.message ||
+        e.toString()
+      thunkAPI.dispatch(setMessage(message))
+      return thunkAPI.rejectWithValue(e.message)
+    }
+  }
+)
 
 const cartItems = getCartItems()
 const quantities = getItemsQuantity()
@@ -25,14 +45,21 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addProduct(state, action) {
-      const itemExist = state.entities.find(item => item._id === action.payload._id)
-      const itemIndex = state.entities.findIndex((item) => item._id === action.payload._id)
+      const itemExist = state.entities.find(
+        (item) => item._id === action.payload._id
+      )
+      const itemIndex = state.entities.findIndex(
+        (item) => item._id === action.payload._id
+      )
       if (itemExist) {
         state.entities[itemIndex].amount += action.payload.amount
         state.total += action.payload.price * action.payload.amount
-        toast.info(`${state.entities[itemIndex].name} добавлено еще ${action.payload.amount} `, {
-          position: 'bottom-left'
-        })
+        toast.info(
+          `${state.entities[itemIndex].name} добавлено еще ${action.payload.amount} `,
+          {
+            position: 'bottom-left'
+          }
+        )
       } else {
         state.itemQuantities += 1
         state.entities.push(action.payload)
@@ -46,14 +73,18 @@ const cartSlice = createSlice({
       setCartTotal(state.total)
     },
     increase: (state, action) => {
-      const itemIndex = state.entities.findIndex((item) => item._id === action.payload)
+      const itemIndex = state.entities.findIndex(
+        (item) => item._id === action.payload
+      )
       state.entities[itemIndex].amount += 1
       state.total += state.entities[itemIndex].price
       setCartItems(state.entities)
       setCartTotal(state.total)
     },
     decrease: (state, action) => {
-      const itemIndex = state.entities.findIndex((item) => item._id === action.payload)
+      const itemIndex = state.entities.findIndex(
+        (item) => item._id === action.payload
+      )
       state.entities[itemIndex].amount -= 1
       state.total -= state.entities[itemIndex].price
       setCartItems(state.entities)
@@ -62,7 +93,9 @@ const cartSlice = createSlice({
     removeItem: (state, action) => {
       const findEl = state.entities.find((item) => item._id === action.payload)
       state.total -= findEl.amount * findEl.price
-      state.entities = state.entities.filter(item => item._id !== action.payload)
+      state.entities = state.entities.filter(
+        (item) => item._id !== action.payload
+      )
       state.itemQuantities -= 1
       setCartItems(state.entities)
       setItemsQuantity(state.itemQuantities)
@@ -86,7 +119,8 @@ export const { addProduct, increase, decrease, removeItem, clearCart } = actions
 
 export const cartItemsSelector = () => (state) => state.cart.entities
 
-export const cartItemQuantitiesSelector = () => (state) => state.cart.itemQuantities
+export const cartItemQuantitiesSelector = () => (state) =>
+  state.cart.itemQuantities
 
 export const cartTotalSelector = () => (state) => state.cart.total
 
