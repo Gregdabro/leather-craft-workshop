@@ -6,7 +6,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
 
   if (pagesCount === 1) return null
   return (
-    <nav>
+    <nav style={{ marginTop: 'auto' }}>
       <ul className={styles.pagination}>
         {pages.map((page) => (
           <li

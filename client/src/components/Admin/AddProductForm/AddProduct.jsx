@@ -1,10 +1,7 @@
-import styles from './Admin.module.scss'
-import Button from '../UI/Button/Button'
-import { AiOutlineCloudUpload } from 'react-icons/ai'
+import styles from '../Admin.module.scss'
 import { useState } from 'react'
-import AdminNavbar from './AdminNavbar'
-import MyInput from '../UI/Input/SearchInput'
-import MyPostForm from '../MyPostForm/MyPostForm'
+import AdminNavbar from '../AdminNavbar'
+import MyPostForm from './AddProductForm'
 
 const AddProduct = () => {
   const [file, setFile] = useState('')

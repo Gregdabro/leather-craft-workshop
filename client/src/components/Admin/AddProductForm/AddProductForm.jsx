@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import MyInput from '../UI/Input/SearchInput'
-import Button from '../UI/Button/Button'
+import MyInput from '../../UI/Input/SearchInput'
+import Button from '../../UI/Button/Button'
 
-const PostForm = ({ create }) => {
+const AddProductForm = ({ create }) => {
   const [post, setPost] = useState({ title: '', body: '' })
 
   const addNewPost = (e) => {
@@ -34,4 +34,4 @@ const PostForm = ({ create }) => {
   )
 }
 
-export default PostForm
+export default AddProductForm

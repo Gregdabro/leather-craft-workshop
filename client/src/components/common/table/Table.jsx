@@ -3,7 +3,7 @@ import TableBody from './TableBody'
 
 const Table = ({ columns, data, children }) => {
   return (
-    <table className="table">
+    <table>
       {children || (
         <>
           <TableHeader {...{ columns }} />

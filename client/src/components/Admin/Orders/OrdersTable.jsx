@@ -1,12 +1,10 @@
-import Table from '../common/table'
-import styles from './Admin.module.scss'
-import AdminNavbar from './AdminNavbar'
-import Category from '../Category/Category'
-import ActionButton from '../common/ActionButton/ActionButton'
-import Image from '../UI/Image/Image'
-import ProductColorList from '../UI/ProductColorList/ProductColorList'
+import Category from '../../Category/Category'
+import ProductColorList from '../../UI/ProductColorList/ProductColorList'
+import ActionButton from '../../common/ActionButton/ActionButton'
+import Table from '../../common/table/Table'
+import Image from '../../UI/Image/Image'
 
-const CommonTable = ({ products, onDelete, ...rest }) => {
+const OrdersTable = ({ products, onDelete, ...rest }) => {
   const columns = {
     id: {
       path: '_id',
@@ -49,4 +47,4 @@ const CommonTable = ({ products, onDelete, ...rest }) => {
   )
 }
 
-export default CommonTable
+export default OrdersTable

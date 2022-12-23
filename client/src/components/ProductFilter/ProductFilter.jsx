@@ -6,14 +6,16 @@ import SearchInput from '../UI/Input/SearchInput'
 const ProductFilter = ({ filter, setFilter, selectedItem, onItemSelect, categories, onClearFilter }) => {
   return (
     <div className={styles.filterWrapper}>
-      <div className={styles.listBtn}>
-        <CategoryBtnList
-          categories={categories}
-          onItemSelect={onItemSelect}
-          selectedItem={selectedItem}
-          onClearFilter={onClearFilter}
-        />
-      </div>
+      {categories && (
+        <div className={styles.listBtn}>
+          <CategoryBtnList
+            categories={categories}
+            onItemSelect={onItemSelect}
+            selectedItem={selectedItem}
+            onClearFilter={onClearFilter}
+          />
+        </div>
+      )}
       <div className={styles.search}>
         <SearchInput
           value={filter.query}

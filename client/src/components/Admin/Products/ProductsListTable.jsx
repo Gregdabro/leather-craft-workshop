@@ -1,18 +1,18 @@
-import CommonTable from './CommonTable'
 import { useSelector } from 'react-redux'
 import {
   productListSelector,
   productLoadingSelector
-} from '../../store/productSlice'
-import styles from './Admin.module.scss'
-import AdminNavbar from './AdminNavbar'
-import { useProducts } from '../../hooks/useProducts'
+} from '../../../store/productSlice'
+import styles from '../Admin.module.scss'
+import AdminNavbar from '../AdminNavbar'
+import { useProducts } from '../../../hooks/useProducts'
 import { useState } from 'react'
-import ProductFilter from '../ProductFilter/ProductFilter'
-import Pagination from '../UI/Pagination/Pagination'
-import { paginate } from '../../utils/paginate'
-import Loader from '../UI/Loader/Loader'
-const CommonList = () => {
+import ProductFilter from '../../ProductFilter/ProductFilter'
+import Pagination from '../../UI/Pagination/Pagination'
+import { paginate } from '../../../utils/paginate'
+import Loader from '../../UI/Loader/Loader'
+import ProductsTable from './ProductsTable'
+const ProductsListTable = () => {
   const productList = useSelector(productListSelector())
   const isProductsLoading = useSelector(productLoadingSelector())
   const [filter, setFilter] = useState({ sort: '', query: '' })
@@ -42,7 +42,7 @@ const CommonList = () => {
               filter={filter}
               setFilter={setFilter}
             />
-            <CommonTable
+            <ProductsTable
               products={productsCrop}
               onDelete={handleDelete}
             />
@@ -60,4 +60,4 @@ const CommonList = () => {
   return <Loader/>
 }
 
-export default CommonList
+export default ProductsListTable

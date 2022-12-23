@@ -10,12 +10,12 @@ import ContactPage from './pages/ContactPage'
 import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
 import AdminPage from './pages/AdminPage'
-import ProductsTable from './components/Admin/ProductsTable'
 import UserTable from './components/Admin/UserTable'
 import CommonList from './components/Admin/CommonList'
-import AddProduct from './components/Admin/AddProduct'
+import AddProduct from './components/Admin/AddProductForm/AddProduct'
 import Cart from './components/Cart/Cart'
 import CartSuccess from './components/Cart/CartSuccess'
+import ProductsListTable from './components/Admin/Products/ProductsListTable'
 
 const routes = (isLoggedIn, location, isAdmin) => [
   {
@@ -32,15 +32,11 @@ const routes = (isLoggedIn, location, isAdmin) => [
     children: [
       {
         path: '',
-        element: <ProductsTable />
+        element: <ProductsListTable />
       },
       {
         path: 'users',
         element: <UserTable />
-      },
-      {
-        path: 'products',
-        element: <ProductsTable />
       },
       {
         path: 'orders',

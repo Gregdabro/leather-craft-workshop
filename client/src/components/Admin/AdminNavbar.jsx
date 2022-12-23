@@ -6,7 +6,6 @@ const AdminNavbar = ({ title, isBackButton, path, label }) => {
   return (
     <div className={styles.navbar}>
       <h2>{title}</h2>
-      <input placeholder="Search..." />
       {isBackButton ? (
         <BackButton>Go Back</BackButton>
       ) : (

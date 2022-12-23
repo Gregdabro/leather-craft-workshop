@@ -7,7 +7,7 @@ import PageHeader from '../components/PageHeader/PageHeader'
 import Loader from '../components/UI/Loader/Loader'
 import { paginate } from '../utils/paginate'
 import Pagination from '../components/UI/Pagination/Pagination'
-import { useProducts } from '../hooks/useProducts'
+import { useProducts, useSelectedProducts } from '../hooks/useProducts'
 import ProductFilter from '../components/ProductFilter/ProductFilter'
 
 const ProductListPage = () => {
@@ -18,7 +18,8 @@ const ProductListPage = () => {
   const categoryList = useSelector(categoryListSelector())
   const [selectedCategory, setSelectedCategory] = useState('')
   const [filter, setFilter] = useState({ sort: '', query: '' })
-  const sortedAndSearchedProducts = useProducts(productList, filter.sort, filter.query, selectedCategory)
+  const sortedAndSearchedProducts = useProducts(productList, filter.sort, filter.query)
+  const selectedProducts = useSelectedProducts(productList, selectedCategory)
   const handleClearFilter = () => {
     setFilter({ sort: '', query: '' })
     setSelectedCategory('')
@@ -31,8 +32,10 @@ const ProductListPage = () => {
     setCurrentPage(pageIndex)
   }
 
-  const count = sortedAndSearchedProducts.length
-  const productsCrop = paginate(sortedAndSearchedProducts, currentPage, pageSize)
+  const filteredProducts = selectedCategory ? selectedProducts : sortedAndSearchedProducts
+
+  const count = filteredProducts.length
+  const productsCrop = paginate(filteredProducts, currentPage, pageSize)
   return (
     <>
       <PageHeader title="catalog" subTitle="Leather Belts" />
@@ -45,7 +48,7 @@ const ProductListPage = () => {
         onClearFilter={handleClearFilter}
       />
       <div style={{ border: '1px solid red', minHeight: 600 }}>
-        {!isProductLoading && sortedAndSearchedProducts.length === 0
+        {!isProductLoading && filteredProducts.length === 0
           ? <p>Нет товаров по условию</p>
           : (
             <ProductList>
