@@ -7,7 +7,7 @@ const CartPage = () => {
     <>
       <PageHeader title="cart" subTitle="Leather Belt" isBackButton={true} />
       <div className={styles.cart}>
-        <Outlet/>
+        <Outlet />
       </div>
     </>
   )

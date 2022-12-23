@@ -4,7 +4,11 @@ import { HiOutlineHeart } from 'react-icons/hi2'
 import { Link } from 'react-router-dom'
 
 const ProductList = ({ children }) => {
-  return <div className={styles.productList}>{children}</div>
+  return (
+    <div className={styles.productList}>
+      {children}
+    </div>
+  )
 }
 
 const ProductItem = ({ item }) => {

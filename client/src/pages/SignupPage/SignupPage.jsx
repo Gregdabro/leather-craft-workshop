@@ -7,7 +7,7 @@ import { signup } from '../../store/authSlice'
 import { NavLink, useNavigate } from 'react-router-dom'
 import TextField from '../../components/common/form/TextInput/TextInput'
 import { clearMessage } from '../../store/messageSlice'
-import Button from '../../components/Button/Button'
+import Button from '../../components/UI/Button/Button'
 
 const signUpSchema = Yup.object({
   name: Yup.string()

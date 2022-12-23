@@ -4,23 +4,29 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  font-size: 20px;
+  font-size: 25px;
 
-  .pageItem {
-    margin: 0;
+  .pageItem, .pageActive {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0298cf;
+
+    button {
+      font-size: 20px;
+      border: none;
+      background: none;
+      padding: 10px;
+    }
   }
-  .active {
-    background-color: red;
-  }
-  .pageLink {
-    line-height: 0;
-    color: #343434;
+
+  .pageActive {
+    border-radius: 100%;
+    background-color: #7451f8;
+    button {
+      color: white;
+    }
   }
 }
+

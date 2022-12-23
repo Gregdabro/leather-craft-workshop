@@ -1,4 +1,4 @@
-import styles from './CategoryBtn.module.scss'
+import styles from './CategoryBtnList.module.scss'
 const CategoryBtn = ({ children, item, onItemSelect, selectedItem }) => {
   return (
     <button

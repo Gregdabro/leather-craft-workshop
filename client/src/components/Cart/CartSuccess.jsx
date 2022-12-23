@@ -5,7 +5,7 @@ const CartSuccess = () => {
   return (
     <div className={styles.cart}>
       <div>Ваш заказ принят</div>
-      <Link to='/'>Продолжить покупки</Link>
+      <Link to="/">Продолжить покупки</Link>
     </div>
 
     // <div className={styles.cart}>

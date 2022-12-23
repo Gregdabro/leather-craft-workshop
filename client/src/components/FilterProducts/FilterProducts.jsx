@@ -1,20 +1,23 @@
 import styles from './FilterProducts.module.scss'
 import CategoryBtn from '../CategoryBtn/CategoryBtn'
+import CategoryBtnList from '../UI/CategoryBtnList/CategoryBtnList'
 
-const FilterProducts = ({ categories }) => {
+const FilterProducts = ({
+  categories,
+  onItemSelect,
+  selectedItem,
+  clearFilter
+}) => {
   return (
     <div className={styles.filterProducts}>
-      <div className={styles.categoryList}>
-        <CategoryBtn>all</CategoryBtn>
-        {categories &&
-          categories.map((item) => (
-            <CategoryBtn key={item._id}>{item.name}</CategoryBtn>
-          ))}
-      </div>
+      <CategoryBtnList
+        categories={categories}
+        onItemSelect={onItemSelect}
+        selectedItem={selectedItem}
+        clearFilter={clearFilter}
+      />
       <div className={styles.colorList}>
-        <button>red</button>
-        <button>blue</button>
-        <button>gray</button>
+        <input placeholder="Search..." />
       </div>
       <div className={styles.select}>
         <select>select</select>

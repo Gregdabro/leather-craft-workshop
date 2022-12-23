@@ -91,10 +91,12 @@ const routes = (isLoggedIn, location, isAdmin) => [
     ),
     children: [
       {
-        path: '', element: <Cart/>
+        path: '',
+        element: <Cart />
       },
       {
-        path: 'success', element: <CartSuccess/>
+        path: 'success',
+        element: <CartSuccess />
       }
     ]
   },

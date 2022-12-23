@@ -1,4 +1,5 @@
-.categoryBtn {
+.categoryBtn,
+.active {
   text-transform: uppercase;
   min-height: 30px;
   display: inline-flex;
@@ -8,8 +9,14 @@
   border-radius: 1.5rem;
   border: 1px solid #343434;
   color: #343434;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  padding: 0.4rem 1rem;
+  padding: 0.2rem 0.5rem;
   position: relative;
+}
+
+.active {
+  background-color: #7451f8;
+  color: white;
+  transition: all 0.5s ease;
 }

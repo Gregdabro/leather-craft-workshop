@@ -1,5 +1,5 @@
 import styles from './Cart.module.scss'
-import Button from '../Button/Button'
+import Button from '../UI/Button/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   cartItemsSelector,
@@ -43,8 +43,8 @@ const Cart = () => {
       })
       .catch(() => {
         setSuccessful(false)
-      }).finally(() => {
-    })
+      })
+      .finally(() => {})
   }
 
   useEffect(() => {
@@ -56,7 +56,11 @@ const Cart = () => {
       {!successful && (
         <>
           <div className={styles.top}>
-            {cartItems.length !== 0 ? <h1>Products in your cart</h1> : <h1>В корзине нет товара</h1>}
+            {cartItems.length !== 0 ? (
+              <h1>Products in your cart</h1>
+            ) : (
+              <h1>В корзине нет товара</h1>
+            )}
           </div>
           <div className={styles.middle}>
             {cartItems?.map((item) => (

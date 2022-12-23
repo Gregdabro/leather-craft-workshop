@@ -1,7 +1,7 @@
 import styles from './Product.module.scss'
 import IMAGES from '../../constants/images'
 import React, { useState } from 'react'
-import Button from '../Button/Button'
+import Button from '../UI/Button/Button'
 import { HiOutlineHeart } from 'react-icons/hi2'
 import { useDispatch, useSelector } from 'react-redux'
 import { productSelector } from '../../store/productSlice'

@@ -4,14 +4,11 @@
   display: flex;
   justify-content: center;
   transition: top 0.3s;
-  top: 0;
-  z-index: 4000;
   min-height: 70px;
   padding: 1rem;
 }
 
 .categoryList {
-  flex: auto;
   display: flex;
   grid-gap: 0.5rem;
   flex-wrap: wrap;
