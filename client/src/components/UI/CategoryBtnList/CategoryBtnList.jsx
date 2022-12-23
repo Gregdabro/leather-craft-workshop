@@ -9,7 +9,9 @@ const CategoryBtnList = ({
 }) => {
   return (
     <div className={styles.categoryList}>
-      <CategoryBtnAll onClearFilter={onClearFilter}>ОЧИСТИТЬ ВСЕ</CategoryBtnAll>
+      <CategoryBtnAll onClearFilter={onClearFilter}>
+        ОЧИСТИТЬ ВСЕ
+      </CategoryBtnAll>
       {categories.map((item) => (
         <CategoryBtn
           key={item._id}

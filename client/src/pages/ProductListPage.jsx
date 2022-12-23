@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { categoryListSelector } from '../store/categorySlice'
-import { productListSelector, productLoadingSelector } from '../store/productSlice'
+import {
+  productListSelector,
+  productLoadingSelector
+} from '../store/productSlice'
 import ProductList from '../components/ProductList/ProductList'
 import PageHeader from '../components/PageHeader/PageHeader'
 import Loader from '../components/UI/Loader/Loader'
@@ -18,7 +21,11 @@ const ProductListPage = () => {
   const categoryList = useSelector(categoryListSelector())
   const [selectedCategory, setSelectedCategory] = useState('')
   const [filter, setFilter] = useState({ sort: '', query: '' })
-  const sortedAndSearchedProducts = useProducts(productList, filter.sort, filter.query)
+  const sortedAndSearchedProducts = useProducts(
+    productList,
+    filter.sort,
+    filter.query
+  )
   const selectedProducts = useSelectedProducts(productList, selectedCategory)
   const handleClearFilter = () => {
     setFilter({ sort: '', query: '' })
@@ -32,7 +39,9 @@ const ProductListPage = () => {
     setCurrentPage(pageIndex)
   }
 
-  const filteredProducts = selectedCategory ? selectedProducts : sortedAndSearchedProducts
+  const filteredProducts = selectedCategory
+    ? selectedProducts
+    : sortedAndSearchedProducts
 
   const count = filteredProducts.length
   const productsCrop = paginate(filteredProducts, currentPage, pageSize)
@@ -48,18 +57,19 @@ const ProductListPage = () => {
         onClearFilter={handleClearFilter}
       />
       <div style={{ border: '1px solid red', minHeight: 600 }}>
-        {!isProductLoading && filteredProducts.length === 0
-          ? <p>Нет товаров по условию</p>
-          : (
-            <ProductList>
-              {isProductLoading
-                ? <Loader/>
-                : productsCrop.map((item) => (
-                  <ProductList.Item key={item._id} item={item} />
-              ))}
-            </ProductList>
-          )
-        }
+        {!isProductLoading && filteredProducts.length === 0 ? (
+          <p>Нет товаров по условию</p>
+        ) : (
+          <ProductList>
+            {isProductLoading ? (
+              <Loader />
+            ) : (
+              productsCrop.map((item) => (
+                <ProductList.Item key={item._id} item={item} />
+              ))
+            )}
+          </ProductList>
+        )}
       </div>
       <Pagination
         itemsCount={count}

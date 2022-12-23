@@ -3,7 +3,9 @@ const CategoryBtnAll = ({ children, selectedItem, onClearFilter }) => {
   return (
     <button
       onClick={onClearFilter}
-      className={selectedItem !== '' ? `${styles.categoryBtn}` : `${styles.active}`}
+      className={
+        selectedItem !== '' ? `${styles.categoryBtn}` : `${styles.active}`
+      }
     >
       {children}
     </button>

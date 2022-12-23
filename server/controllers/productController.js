@@ -3,6 +3,7 @@ const ApiError = require("../error/ApiError")
 
 class ProductController {
     async create(req, res, next) {
+        console.log('req', req.body)
         try {
             const { name, image, category, colors, rate, price, description, isFavorite } = req.body
             const product = await Product.create({ name, image, category, colors, rate, price, description, isFavorite })

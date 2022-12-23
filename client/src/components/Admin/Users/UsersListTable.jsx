@@ -16,11 +16,19 @@ const UsersListTable = () => {
   const productList = useSelector(productListSelector())
   const isProductsLoading = useSelector(productLoadingSelector())
   const [filter, setFilter] = useState({ sort: '', query: '' })
-  const sortedAndSearchedProducts = useProducts(productList, filter.sort, filter.query)
+  const sortedAndSearchedProducts = useProducts(
+    productList,
+    filter.sort,
+    filter.query
+  )
   const [currentPage, setCurrentPage] = useState(1)
   const count = sortedAndSearchedProducts.length
   const pageSize = 9
-  const productsCrop = paginate(sortedAndSearchedProducts, currentPage, pageSize)
+  const productsCrop = paginate(
+    sortedAndSearchedProducts,
+    currentPage,
+    pageSize
+  )
   const handleDelete = (id) => {
     console.log('id', id)
   }
@@ -32,19 +40,10 @@ const UsersListTable = () => {
     return (
       <>
         <div className={styles.main}>
-          <AdminNavbar
-            title="Users"
-            isBackButton={true}
-          />
+          <AdminNavbar title="Users" isBackButton={true} />
           <div className={styles.mainSection}>
-            <ProductFilter
-              filter={filter}
-              setFilter={setFilter}
-            />
-            <UsersTable
-              products={productsCrop}
-              onDelete={handleDelete}
-            />
+            <ProductFilter filter={filter} setFilter={setFilter} />
+            <UsersTable products={productsCrop} onDelete={handleDelete} />
           </div>
           <Pagination
             itemsCount={count}
@@ -56,7 +55,7 @@ const UsersListTable = () => {
       </>
     )
   }
-  return <Loader/>
+  return <Loader />
 }
 
 export default UsersListTable

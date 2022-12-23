@@ -7,16 +7,17 @@ import ProductsListTable from '../components/Admin/Products/ProductsListTable'
 import UsersListTable from '../components/Admin/Users/UsersListTable'
 import OrdersListTable from '../components/Admin/Orders/OrdersListTable'
 import AddProduct from '../components/Admin/AddProductForm/AddProduct'
+import TestAddForm from '../components/Admin/AddProductForm/TestAddForm'
 
 const AdminPage = () => {
   return (
     <>
       <PageHeader title="admin" subTitle="Dashboard" />
       <div className={styles.dashBoard}>
-        <Sidebar/>
+        <Sidebar />
         <div className={styles.content}>
           <Routes>
-            <Route path={''} element={<ProductsListTable/>} />
+            <Route path={''} element={<ProductsListTable />} />
             <Route path={'/users'} element={<UsersListTable />} />
             <Route path={'/orders'} element={<OrdersListTable />} />
             <Route path={'/add-product'} element={<AddProduct />} />

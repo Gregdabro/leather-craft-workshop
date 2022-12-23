@@ -20,18 +20,20 @@ export const useSelectedProducts = (products, selectedCategory) => {
   return selectedCategoryProducts
 }
 
-export const useProducts = (products, sort, query, selectedCategory) => {
-  // let sortedAndSearchedAndSelectedProducts = []
+export const useProducts = (
+  products,
+  sort,
+  query,
+  selectedCategory,
+  isProductsLoading
+) => {
   const sortedProducts = useSortedProducts(products, sort, selectedCategory)
 
-  // const selectedProducts = useSelectedProducts(products, selectedCategory)
-
   const sortedAndSearchedProducts = useMemo(() => {
-    return sortedProducts.filter(p => p.name.toLowerCase().includes(query.toLowerCase()))
-  }, [query, sortedProducts])
-  // sortedAndSearchedAndSelectedProducts = selectedCategory
-  //   ? [...selectedProducts]
-  //   : [...sortedAndSearchedProducts]
+    return sortedProducts.filter((p) =>
+      p.name.toLowerCase().includes(query.toLowerCase())
+    )
+  }, [query, sortedProducts, products, sortedProducts, isProductsLoading])
 
   return sortedAndSearchedProducts
 }

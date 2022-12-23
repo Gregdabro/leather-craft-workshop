@@ -3,7 +3,14 @@ import MySelect from '../UI/SortSelect/SortSelect'
 import CategoryBtnList from '../UI/CategoryBtnList/CategoryBtnList'
 import SearchInput from '../UI/Input/SearchInput'
 
-const ProductFilter = ({ filter, setFilter, selectedItem, onItemSelect, categories, onClearFilter }) => {
+const ProductFilter = ({
+  filter,
+  setFilter,
+  selectedItem,
+  onItemSelect,
+  categories,
+  onClearFilter
+}) => {
   return (
     <div className={styles.filterWrapper}>
       {categories && (
@@ -19,14 +26,16 @@ const ProductFilter = ({ filter, setFilter, selectedItem, onItemSelect, categori
       <div className={styles.search}>
         <SearchInput
           value={filter.query}
-          onChange={e => setFilter({ ...filter, query: e.target.value })}
+          onChange={(e) => setFilter({ ...filter, query: e.target.value })}
           placeholder="Поиск..."
         />
       </div>
       <div className={styles.select}>
         <MySelect
           value={filter.sort}
-          onChange={selectedSort => setFilter({ ...filter, sort: selectedSort })}
+          onChange={(selectedSort) =>
+            setFilter({ ...filter, sort: selectedSort })
+          }
           defaultValue="Сортировка"
           options={[
             { value: 'name', name: 'По названию' },

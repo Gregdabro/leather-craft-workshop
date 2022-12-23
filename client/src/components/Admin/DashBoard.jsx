@@ -6,7 +6,7 @@ import Sidebar from './Sidebar'
 const DashBoard = ({ children }) => {
   return (
     <div className={styles.dashBoard}>
-      <Sidebar/>
+      <Sidebar />
       <div className={styles.content}>{children}</div>
     </div>
   )

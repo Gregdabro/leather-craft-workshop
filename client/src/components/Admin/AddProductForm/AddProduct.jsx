@@ -1,93 +1,132 @@
-import styles from '../Admin.module.scss'
-import { useState } from 'react'
-import AdminNavbar from '../AdminNavbar'
-import MyPostForm from './AddProductForm'
+import styles from '../../../pages/SignupPage/SignupPage.module.scss'
+import * as Yup from 'yup'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { clearMessage } from '../../../store/messageSlice'
+import { Field, FormikProvider, useFormik } from 'formik'
+import TextField from '../../common/form/TextInput/TextInput'
+import Button from '../../UI/Button/Button'
+import { categoryListSelector } from '../../../store/categorySlice'
+import CustomSelect from './TestCustomSelect'
+import { addProduct } from '../../../store/productSlice'
+import { colorListSelector } from '../../../store/colorSlice'
+import MultiSelectField from './TestCustomMultiSelect'
 
-const AddProduct = () => {
-  const [file, setFile] = useState('')
-  const [posts, setPosts] = useState([
-    { id: 1, title: 'Some Title', body: 'SomBody' }
-  ])
+const signUpSchema = Yup.object({
+  name: Yup.string().required('Required'),
+  image: Yup.string().required('Required'),
+  category: Yup.object().required('Required'),
+  price: Yup.string().required('Required'),
+  description: Yup.string().required('Required'),
+  colors: Yup.object().required('Required')
 
-  console.log('posts', posts)
+})
 
-  const createPost = (newPost) => {
-    setPosts([...posts, newPost])
+const initialValues = {
+  name: '',
+  image: '',
+  category: '',
+  price: '',
+  description: '',
+  colors: []
+}
+
+const SignupPage = () => {
+  const [loading, setLoading] = useState(false)
+  const [successful, setSuccessful] = useState(false)
+  const { message } = useSelector((state) => state.message)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const categories = useSelector(categoryListSelector())
+  const categoriesList = categories.map((c) => ({
+    label: c.name,
+    value: c._id
+  }))
+
+  const colors = useSelector(colorListSelector())
+  const colorsList = colors.map((c) => ({
+    label: c.name,
+    value: c._id
+  }))
+  console.log('colorsList', colorsList)
+
+  useEffect(() => {
+    dispatch(clearMessage())
+  }, [dispatch])
+
+  const handleSubmit = (formValues) => {
+    const data = formValues
+    setLoading(true)
+    setSuccessful(false)
+
+    dispatch(addProduct({ ...data, colors: data.colors.map((c) => c.value) }))
+      .unwrap()
+      .then(() => {
+        setSuccessful(true)
+        navigate('/')
+      })
+      .catch(() => {
+        setSuccessful(false)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
 
-  const removePost = (post) => {
-    setPosts(posts.filter(p => p.id !== post.id))
-  }
+  const formik = useFormik({
+    initialValues,
+    validationSchema: signUpSchema,
+    onSubmit: handleSubmit
+  })
 
   return (
-    <div className={styles.main}>
-      <AdminNavbar title="Add new Product" isBackButton={true} />
-      <div className={styles.mainSection}>
-        <div className={styles.newProduct}>
-          <div className={styles.left}>
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
-              }
-            />
-          </div>
-          <div className={styles.right}>
-            <MyPostForm create={createPost}/>
-            {/*<form className={styles.form}>*/}
-            {/*  <div className={styles.formInput}>*/}
-            {/*    <label htmlFor="file">*/}
-            {/*      Image: <AiOutlineCloudUpload className={styles.icon} />*/}
-            {/*    </label>*/}
-            {/*    <input*/}
-            {/*      type="file"*/}
-            {/*      id="file"*/}
-            {/*      style={{ display: 'none' }}*/}
-            {/*      onChange={(e) => setFile(e.target.files[0])}*/}
-            {/*    />*/}
-            {/*  </div>*/}
-            {/*  <div className={styles.formInput}>*/}
-            {/*    <Input*/}
-            {/*      value={post.title}*/}
-            {/*      onChange={(e) => setPost({ ...post, title: e.target.value })}*/}
-            {/*      type="text"*/}
-            {/*      placeholder="product name"*/}
-            {/*    />*/}
-            {/*  </div>*/}
-            {/*  <div className={styles.formInput}>*/}
-            {/*    <Input*/}
-            {/*      value={post.body}*/}
-            {/*      onChange={(e) => setPost({ ...post, body: e.target.value })}*/}
-            {/*      type="text"*/}
-            {/*      placeholder="description"*/}
-            {/*    />*/}
-            {/*  </div>*/}
+    <div className={styles.signupForm}>
+      <div className={styles.formWrapper}>
+        <h2>Signup Form</h2>
+        <FormikProvider value={formik}>
+          {!successful && (
+            <form onSubmit={formik.handleSubmit}>
+              <CustomSelect
+                className="input"
+                onChange={(value) =>
+                  formik.setFieldValue('category', value.value)
+                }
+                value={formik.values.category}
+                options={categoriesList}
+              />
+              <MultiSelectField
+                options={colorsList}
+                onChange={(value) =>
+                  formik.setFieldValue('colors', value.value)}
+                name="qualities"
+                label="Выберите ваши качесвта"
+              />
+              <TextField label="Name" name="name" />
+              <TextField label="Image" name="image" />
+              <TextField label="Description" name="description" />
+              <TextField label="Price" name="price" />
 
-            {/*  <div className={styles.formInput}>*/}
-            {/*    <label>Description</label>*/}
-            {/*    <input type="text" placeholder="Description" />*/}
-            {/*  </div>*/}
-            {/*  <div className={styles.formInput}>*/}
-            {/*    <label>Category</label>*/}
-            {/*    <input type="text" placeholder="category" />*/}
-            {/*  </div>*/}
-            {/*  <div className={styles.formInput}>*/}
-            {/*    <label>Price</label>*/}
-            {/*    <input type="text" placeholder="100" />*/}
-            {/*  </div>*/}
-            {/*  <div className={styles.formInput}>*/}
-            {/*    <label>Colors</label>*/}
-            {/*    <input type="text" placeholder="Blue, red, gray" />*/}
-            {/*  </div>*/}
-            {/*  <button onClick={(e) => addNewPost(e)}>SEND</button>*/}
-            {/*  /!*<Button>Send</Button>*!/*/}
-            {/*</form>*/}
-          </div>
-        </div>
+              <Button disabled={loading}>Create</Button>
+            </form>
+          )}
+          {message && (
+            <div className="form-group">
+              <div
+                className={
+                  successful ? 'alert alert-success' : 'alert alert-danger'
+                }
+                role="alert"
+              >
+                {message}
+              </div>
+            </div>
+          )}
+        </FormikProvider>
       </div>
     </div>
   )
 }
 
-export default AddProduct
+export default SignupPage
