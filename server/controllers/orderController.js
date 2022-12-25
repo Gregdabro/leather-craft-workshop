@@ -5,7 +5,6 @@ class OrderController {
     async create(req, res, next) {
         try {
             const newOrder = new Order(req.body)
-            console.log('newOrder', newOrder)
             const savedOrder = await newOrder.save()
             res.status(201).json(savedOrder);
 

@@ -4,48 +4,46 @@ import { Navigate } from 'react-router-dom'
 import SignupPage from './pages/SignupPage'
 import ProductsLayout from './layouts/ProductsLayout'
 import ProductListPage from './pages/ProductListPage'
-import ProductPage from './pages/ProductPage'
+import OneProductPage from './pages/OneProductPage'
 import CartPage from './pages/CartPage'
 import ContactPage from './pages/ContactPage'
 import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
-import AdminPage from './pages/AdminPage'
-import UserTable from './components/Admin/UserTable'
-import CommonList from './components/Admin/CommonList'
-import AddProduct from './components/Admin/AddProductForm/AddProduct'
 import Cart from './components/Cart/Cart'
 import CartSuccess from './components/Cart/CartSuccess'
-import ProductsListTable from './components/Admin/Products/ProductsListTable'
+import EditProductForm from './components/Admin/AddProductForm/EditProductForm'
+import AdminLayout from './layouts/AdminLayout'
+import AdminProductsPage from './pages/Admin/AdminProductsPage'
+import AddProductForm from './components/Admin/AddProductForm/AddProductForm'
+import AdminUsersPage from './pages/Admin/AdminUsersPage'
+import AdminOrdersPage from './pages/Admin/AdminOrdersPage'
 
 const routes = (isLoggedIn, location, isAdmin) => [
   {
-    path: '',
-    element: <MainPage />
+    path: 'products',
+    element: isLoggedIn ? (<ProductsLayout />) : (<Navigate to="/auth/login" />),
+    children: [
+      { path: '', element: <ProductListPage /> },
+      { path: ':productId', element: <OneProductPage /> }
+    ]
+  },
+  {
+    path: '*',
+    element: <Navigate to={isLoggedIn ? '/products' : '/'} />
   },
   {
     path: 'admin',
     element: isAdmin ? (
-      <AdminPage />
+      <AdminLayout />
     ) : (
       <Navigate to="/auth/login" state={{ referrer: location }} />
     ),
     children: [
-      {
-        path: '',
-        element: <ProductsListTable />
-      },
-      {
-        path: 'users',
-        element: <UserTable />
-      },
-      {
-        path: 'orders',
-        element: <CommonList />
-      },
-      {
-        path: 'add-product',
-        element: <AddProduct />
-      }
+      { path: '', element: <AdminProductsPage /> },
+      { path: ':productId', element: <EditProductForm /> },
+      { path: 'add-product', element: <AddProductForm /> },
+      { path: 'users', element: <AdminUsersPage /> },
+      { path: 'orders', element: <AdminOrdersPage /> }
     ]
   },
   {
@@ -66,16 +64,8 @@ const routes = (isLoggedIn, location, isAdmin) => [
       },
       {
         path: '*',
-        element: <Navigate to="/auth/signup" />
+        element: <Navigate to="/auth/login" />
       }
-    ]
-  },
-  {
-    path: 'product',
-    element: <ProductsLayout />,
-    children: [
-      { path: '', element: <ProductListPage /> },
-      { path: ':productId', element: <ProductPage /> }
     ]
   },
   {
@@ -97,16 +87,8 @@ const routes = (isLoggedIn, location, isAdmin) => [
     ]
   },
   {
-    path: '/contact',
-    element: <ContactPage />
-  },
-  {
-    path: '/about',
-    element: <AboutPage />
-  },
-  {
     path: '*',
-    element: <Navigate to="/product" />
+    element: <Navigate to="/" />
   }
 ]
 

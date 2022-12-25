@@ -4,7 +4,7 @@ import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 import IMAGES from '../../constants/images'
 import { useDispatch } from 'react-redux'
 import { decrease, increase, removeItem } from '../../store/cartSlice'
-import ProductColorList from '../UI/ProductColorList/ProductColorList'
+import ColorList from '../UI/ColorList/ColorList'
 
 const CartItem = ({
   _id: id,
@@ -33,7 +33,7 @@ const CartItem = ({
         <div className={styles.details}>
           <h2>{name}</h2>
           <p className={styles.size}>{description}</p>
-          <ProductColorList colors={colors} />
+          <ColorList colors={colors} />
         </div>
       </div>
       <div className={styles.quantity}>

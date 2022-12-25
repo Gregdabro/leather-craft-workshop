@@ -1,6 +1,6 @@
 import httpService from './http.services'
 
-const productEndpoint = 'product/'
+const productEndpoint = 'products/'
 
 const productService = {
   get: async () => {
@@ -9,6 +9,16 @@ const productService = {
   },
   create: async (payload) => {
     const req = await httpService.post(productEndpoint, payload)
+    return req.data
+  },
+  update: async (payload) => {
+    console.log(payload)
+    const { productId } = payload
+    const req = await httpService.patch(productEndpoint + productId, payload)
+    return req.data
+  },
+  delete: async (payload) => {
+    const req = await httpService.delete(productEndpoint + payload)
     return req.data
   }
 }

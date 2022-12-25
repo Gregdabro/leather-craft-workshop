@@ -1,93 +1,129 @@
-import styles from '../Admin.module.scss'
-import { useState } from 'react'
+import styles from './AddProduct.module.scss'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { clearMessage } from '../../../store/messageSlice'
+import { FormikProvider, useFormik } from 'formik'
+import TextField from '../../common/form/TextInput/TextInput'
+import Button from '../../UI/Button/Button'
+import { categoryListSelector } from '../../../store/categorySlice'
+import { createProduct } from '../../../store/productSlice'
+import { colorListSelector } from '../../../store/colorSlice'
+import CustomSelect from '../../common/form/select/CustomSelect'
+import MultiSelectField from '../../common/form/select/CustomMultiSelect'
 import AdminNavbar from '../AdminNavbar'
-import MyPostForm from './AddProductForm'
+import { addProductSchema } from './addProductSchema'
 
-const AddProduct = () => {
-  const [file, setFile] = useState('')
-  const [posts, setPosts] = useState([
-    { id: 1, title: 'Some Title', body: 'SomBody' }
-  ])
+const initialValues = {
+  name: '',
+  image: '',
+  category: '',
+  price: '',
+  description: '',
+  colors: []
+}
 
-  console.log('posts', posts)
+const AddProductForm = () => {
+  const [loading, setLoading] = useState(false)
+  const [successful, setSuccessful] = useState(false)
+  const { message } = useSelector((state) => state.message)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const createPost = (newPost) => {
-    setPosts([...posts, newPost])
+  const categories = useSelector(categoryListSelector())
+  const categoriesList = categories.map((c) => ({
+    label: c.name,
+    value: c._id
+  }))
+
+  const colors = useSelector(colorListSelector())
+  const colorsList = colors.map((c) => ({
+    label: c.name,
+    value: c._id
+  }))
+
+  useEffect(() => {
+    dispatch(clearMessage())
+  }, [dispatch])
+
+  const handleSubmit = (formValues) => {
+    const data = formValues
+    setLoading(true)
+    setSuccessful(false)
+
+    dispatch(
+      createProduct({
+        ...data,
+        colors: data.colors.map((c) => c.value),
+        image: 'bakers_bridle'
+      })
+    )
+      .unwrap()
+      .then(() => {
+        setSuccessful(true)
+        navigate('/admin')
+      })
+      .catch(() => {
+        setSuccessful(false)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
 
-  const removePost = (post) => {
-    setPosts(posts.filter((p) => p.id !== post.id))
-  }
-
+  const formik = useFormik({
+    initialValues,
+    validationSchema: addProductSchema,
+    onSubmit: handleSubmit
+  })
   return (
-    <div className={styles.main}>
-      <AdminNavbar title="Add new Product" isBackButton={true} />
-      <div className={styles.mainSection}>
-        <div className={styles.newProduct}>
-          <div className={styles.left}>
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
-              }
-            />
-          </div>
-          <div className={styles.right}>
-            <MyPostForm create={createPost} />
-            <form className={styles.form}>
-              <div className={styles.formInput}>
-                <label htmlFor="file">
-                  Image: <AiOutlineCloudUpload className={styles.icon} />
-                </label>
-                <input
-                  type="file"
-                  id="file"
-                  style={{ display: 'none' }}
-                  onChange={(e) => setFile(e.target.files[0])}
+    <>
+      <AdminNavbar title="Add new OrderProduct" isBackButton={true} />
+      <div className={styles.addNewProduct}>
+        <FormikProvider value={formik}>
+          {!successful && (
+            <form onSubmit={formik.handleSubmit}>
+              <div className={styles.select}>
+                <CustomSelect
+                  onChange={(value) =>
+                    formik.setFieldValue('category', value.value)
+                  }
+                  value={formik.values.category}
+                  options={categoriesList}
+                  name="category"
+                  label="Choose category"
                 />
               </div>
-              <div className={styles.formInput}>
-                <Input
-                  value={post.title}
-                  onChange={(e) => setPost({ ...post, title: e.target.value })}
-                  type="text"
-                  placeholder="product name"
-                />
-              </div>
-              <div className={styles.formInput}>
-                <Input
-                  value={post.body}
-                  onChange={(e) => setPost({ ...post, body: e.target.value })}
-                  type="text"
-                  placeholder="description"
-                />
-              </div>
-
-              <div className={styles.formInput}>
-                <label>Description</label>
-                <input type="text" placeholder="Description" />
-              </div>
-              <div className={styles.formInput}>
-                <label>Category</label>
-                <input type="text" placeholder="category" />
-              </div>
-              <div className={styles.formInput}>
-                <label>Price</label>
-                <input type="text" placeholder="100" />
-              </div>
-              <div className={styles.formInput}>
-                <label>Colors</label>
-                <input type="text" placeholder="Blue, red, gray" />
-              </div>
-              <button onClick={(e) => addNewPost(e)}>SEND</button>
-              {/*<Button>Send</Button>*/}
+              {formik.errors.category ? (
+                <div className="error">{formik.errors.category}</div>
+              ) : null}
+              <MultiSelectField
+                options={colorsList}
+                onChange={(value) =>
+                  formik.setFieldValue('colors', value.value)
+                }
+                name="colors"
+                label="Choose colors"
+              />
+              {formik.errors.colors ? (
+                <div className="error">{formik.errors.colors}</div>
+              ) : null}
+              <TextField label="Name" name="name" />
+              <TextField label="Description" name="description" />
+              <TextField label="Price" name="price" />
+              <TextField label="Image" name="image" />
+              <Button disabled={loading}>Create</Button>
             </form>
-          </div>
-        </div>
+          )}
+          {message && (
+            <div className={styles.error}>
+              <p>{message}</p>
+            </div>
+          )}
+        </FormikProvider>
       </div>
-    </div>
+    </>
   )
 }
 
-export default AddProduct
+export default AddProductForm

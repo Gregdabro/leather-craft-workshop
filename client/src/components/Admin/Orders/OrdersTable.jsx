@@ -1,48 +1,37 @@
-import Category from '../../Category/Category'
-import ProductColorList from '../../UI/ProductColorList/ProductColorList'
 import ActionButton from '../../common/ActionButton/ActionButton'
 import Table from '../../common/table/Table'
-import Image from '../../UI/Image/Image'
+import OrderProductList from '../../UI/OrderProducts/OrderProductList'
 
-const OrdersTable = ({ products, onDelete, ...rest }) => {
+const OrdersTable = ({ orders, onDelete }) => {
   const columns = {
     id: {
       path: '_id',
-      name: 'ID'
-    },
-    image: {
-      name: 'Image',
-      component: (product) => <Image path={product.image} />
+      name: 'order'
     },
     name: {
-      path: 'name',
-      name: 'User Name'
+      path: 'userName',
+      name: 'customer'
     },
-    description: {
-      path: 'description',
-      name: 'Description'
+    products: {
+      name: 'Products',
+      component: (order) => <OrderProductList products={order.products} />
     },
-    category: {
-      name: 'Category',
-      component: (product) => <Category id={product.category} />
-    },
-    colors: {
-      name: 'Colors',
-      component: (product) => <ProductColorList colors={product.colors} />
+    total: {
+      path: 'total',
+      name: 'Total'
     },
     actions: {
       name: '#',
-      component: (product) => (
+      component: (order) => (
         <div style={{ display: 'flex', gap: 10, flexWrap: 'nowrap' }}>
-          <ActionButton action="UPDATE" id={product._id} />
-          <ActionButton action="REMOVE" onClick={() => onDelete(product._id)} />
+          <ActionButton action="REMOVE" onClick={() => onDelete(order._id)} />
         </div>
       )
     }
   }
   return (
     <>
-      <Table columns={columns} data={products} />
+      <Table columns={columns} data={orders} />
     </>
   )
 }

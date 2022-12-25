@@ -1,7 +1,7 @@
 import PageHeader from '../components/PageHeader/PageHeader'
 import Product from '../components/Product/Product'
 
-const ProductPage = () => {
+const OneProductPage = () => {
   return (
     <>
       <PageHeader
@@ -14,4 +14,4 @@ const ProductPage = () => {
   )
 }
 
-export default ProductPage
+export default OneProductPage

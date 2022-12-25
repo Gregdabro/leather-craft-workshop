@@ -6,9 +6,9 @@ import {
 } from '../../store/productSlice'
 import styles from './Admin.module.scss'
 import AdminNavbar from './AdminNavbar'
-import { useProducts } from '../../hooks/useProducts'
+import { useProductsFilter } from '../../hooks/useProductsFilter'
 import { useState } from 'react'
-import ProductFilter from '../ProductFilter/ProductFilter'
+import Filter from '../Filter/Filter'
 import Pagination from '../UI/Pagination/Pagination'
 import { paginate } from '../../utils/paginate'
 import Loader from '../UI/Loader/Loader'
@@ -16,7 +16,7 @@ const CommonList = () => {
   const productList = useSelector(productListSelector())
   const isProductsLoading = useSelector(productLoadingSelector())
   const [filter, setFilter] = useState({ sort: '', query: '' })
-  const sortedAndSearchedProducts = useProducts(
+  const sortedAndSearchedProducts = useProductsFilter(
     productList,
     filter.sort,
     filter.query
@@ -46,7 +46,7 @@ const CommonList = () => {
             label="new product"
           />
           <div className={styles.mainSection}>
-            <ProductFilter filter={filter} setFilter={setFilter} />
+            <Filter filter={filter} setFilter={setFilter} />
             <CommonTable products={productsCrop} onDelete={handleDelete} />
           </div>
           <Pagination

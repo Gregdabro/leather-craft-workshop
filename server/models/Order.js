@@ -2,9 +2,11 @@ const {Schema, model} = require("mongoose")
 
 const schema = new Schema({
   userId: {type: Schema.Types.ObjectId, required: true,ref: "User"},
+  userName: {type: String},
   products: [
     {
       productId: { type: Schema.Types.ObjectId, required: true,ref: "Product" },
+      name: {type: String},
       selectedColor: {type: String},
       amount: {
         type: Number,

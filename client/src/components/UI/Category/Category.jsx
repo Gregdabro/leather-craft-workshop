@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import {
   categoryLoadingSelector,
   categorySelector
-} from '../../store/categorySlice'
+} from '../../../store/categorySlice'
 
 const Category = ({ id }) => {
   const category = useSelector(categorySelector(id))

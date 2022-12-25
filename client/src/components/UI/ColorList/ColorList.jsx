@@ -3,9 +3,10 @@ import {
   getColorsByIds,
   isLoadingColorSelector
 } from '../../../store/colorSlice'
-import ProductColor from './ProductColor'
-const ProductColorList = ({ colors }) => {
+import Color from './Color'
+const ColorList = ({ colors }) => {
   const isLoading = useSelector(isLoadingColorSelector())
+  console.log('isLoading', isLoading)
   const colorList = useSelector(getColorsByIds(colors))
   if (isLoading) return 'Loading ...'
 
@@ -19,10 +20,10 @@ const ProductColorList = ({ colors }) => {
       }}
     >
       {colorList.map((color) => (
-        <ProductColor key={color._id} {...color} />
+        <Color key={color._id} {...color} />
       ))}
     </div>
   )
 }
 
-export default ProductColorList
+export default ColorList

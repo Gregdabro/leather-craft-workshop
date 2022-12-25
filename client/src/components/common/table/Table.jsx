@@ -1,9 +1,10 @@
 import TableHeader from './TableHeader'
 import TableBody from './TableBody'
+import styles from './Table.module.scss'
 
 const Table = ({ columns, data, children }) => {
   return (
-    <table>
+    <table className={styles.table}>
       {children || (
         <>
           <TableHeader {...{ columns }} />

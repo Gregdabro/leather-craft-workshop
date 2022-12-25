@@ -30,7 +30,7 @@ const Navbar = () => {
           <a href={MAIN_ROUTE}>home</a>
         </div>
         <div>
-          <a href={PRODUCT_ROUTE}>shop</a>
+          <a href={MAIN_ROUTE}>shop</a>
         </div>
         <div>
           <a href={ABOUT_ROUTE}>about</a>

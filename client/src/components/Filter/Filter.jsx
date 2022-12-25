@@ -1,16 +1,18 @@
-import styles from './ProductFilter.module.scss'
+import styles from './Filter.module.scss'
 import MySelect from '../UI/SortSelect/SortSelect'
 import CategoryBtnList from '../UI/CategoryBtnList/CategoryBtnList'
 import SearchInput from '../UI/Input/SearchInput'
 
-const ProductFilter = ({
+const Filter = ({
   filter,
   setFilter,
   selectedItem,
   onItemSelect,
   categories,
-  onClearFilter
+  onClearFilter,
+  options
 }) => {
+  console.log('options', options)
   return (
     <div className={styles.filterWrapper}>
       {categories && (
@@ -37,14 +39,11 @@ const ProductFilter = ({
             setFilter({ ...filter, sort: selectedSort })
           }
           defaultValue="Сортировка"
-          options={[
-            { value: 'name', name: 'По названию' },
-            { value: 'category', name: 'По описанию' }
-          ]}
+          options={options}
         />
       </div>
     </div>
   )
 }
 
-export default ProductFilter
+export default Filter

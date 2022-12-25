@@ -2,31 +2,32 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { categoryListSelector } from '../store/categorySlice'
 import {
-  productListSelector,
-  productLoadingSelector
+  isLoadingProductSelector,
+  productListSelector
 } from '../store/productSlice'
 import ProductList from '../components/ProductList/ProductList'
 import PageHeader from '../components/PageHeader/PageHeader'
 import Loader from '../components/UI/Loader/Loader'
 import { paginate } from '../utils/paginate'
 import Pagination from '../components/UI/Pagination/Pagination'
-import { useProducts, useSelectedProducts } from '../hooks/useProducts'
-import ProductFilter from '../components/ProductFilter/ProductFilter'
+import Filter from '../components/Filter/Filter'
+import { useProductsFilter, useSelectedProducts } from '../hooks/useProductsFilter'
 
 const ProductListPage = () => {
   const productList = useSelector(productListSelector())
   const [currentPage, setCurrentPage] = useState(1)
   const pageSize = 9
-  const isProductLoading = useSelector(productLoadingSelector())
+  const isProductLoading = useSelector(isLoadingProductSelector())
   const categoryList = useSelector(categoryListSelector())
   const [selectedCategory, setSelectedCategory] = useState('')
   const [filter, setFilter] = useState({ sort: '', query: '' })
-  const sortedAndSearchedProducts = useProducts(
+  const sortedAndSearchedProducts = useProductsFilter(
     productList,
     filter.sort,
     filter.query
   )
   const selectedProducts = useSelectedProducts(productList, selectedCategory)
+
   const handleClearFilter = () => {
     setFilter({ sort: '', query: '' })
     setSelectedCategory('')
@@ -48,13 +49,17 @@ const ProductListPage = () => {
   return (
     <>
       <PageHeader title="catalog" subTitle="Leather Belts" />
-      <ProductFilter
+      <Filter
         filter={filter}
         setFilter={setFilter}
         selectedItem={selectedCategory}
         categories={categoryList}
         onItemSelect={handleCategorySelect}
         onClearFilter={handleClearFilter}
+        options={[
+          { value: 'name', name: 'По названию' },
+          { value: 'category', name: 'По категории' }
+        ]}
       />
       <div style={{ border: '1px solid red', minHeight: 600 }}>
         {!isProductLoading && filteredProducts.length === 0 ? (

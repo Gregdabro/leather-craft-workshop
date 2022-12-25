@@ -1,10 +1,10 @@
 import Table from '../common/table'
 import styles from './Admin.module.scss'
 import AdminNavbar from './AdminNavbar'
-import Category from '../Category/Category'
+import Category from '../UI/Category/Category'
 import ActionButton from '../common/ActionButton/ActionButton'
 import Image from '../UI/Image/Image'
-import ProductColorList from '../UI/ProductColorList/ProductColorList'
+import ColorList from '../UI/ColorList/ColorList'
 
 const CommonTable = ({ products, onDelete, ...rest }) => {
   const columns = {
@@ -30,7 +30,7 @@ const CommonTable = ({ products, onDelete, ...rest }) => {
     },
     colors: {
       name: 'Colors',
-      component: (product) => <ProductColorList colors={product.colors} />
+      component: (product) => <ColorList colors={product.colors} />
     },
     actions: {
       name: '#',

@@ -1,57 +1,48 @@
-import { useSelector } from 'react-redux'
-import {
-  productListSelector,
-  productLoadingSelector
-} from '../../../store/productSlice'
-import styles from '../Admin.module.scss'
+import { useDispatch, useSelector } from 'react-redux'
 import AdminNavbar from '../AdminNavbar'
-import { useProducts } from '../../../hooks/useProducts'
+import { useProductsFilter } from '../../../hooks/useProductsFilter'
 import { useState } from 'react'
-import ProductFilter from '../../ProductFilter/ProductFilter'
+import Filter from '../../Filter/Filter'
 import Pagination from '../../UI/Pagination/Pagination'
 import { paginate } from '../../../utils/paginate'
 import Loader from '../../UI/Loader/Loader'
 import UsersTable from './UsersTable'
+import {
+  removeUser,
+  usersListSelector,
+  isUsersLoadingSelector
+} from '../../../store/userSlice'
 const UsersListTable = () => {
-  const productList = useSelector(productListSelector())
-  const isProductsLoading = useSelector(productLoadingSelector())
+  const dispatch = useDispatch()
+  const usersList = useSelector(usersListSelector())
+  const isUsersLoading = useSelector(isUsersLoadingSelector())
   const [filter, setFilter] = useState({ sort: '', query: '' })
-  const sortedAndSearchedProducts = useProducts(
-    productList,
-    filter.sort,
-    filter.query
-  )
+  const sortedAndSearchedUsers = useProductsFilter(usersList, filter.sort, filter.query)
   const [currentPage, setCurrentPage] = useState(1)
-  const count = sortedAndSearchedProducts.length
+  const count = sortedAndSearchedUsers.length
   const pageSize = 9
-  const productsCrop = paginate(
-    sortedAndSearchedProducts,
-    currentPage,
-    pageSize
-  )
-  const handleDelete = (id) => {
-    console.log('id', id)
+  const usersCrop = paginate(sortedAndSearchedUsers, currentPage, pageSize)
+  const handleDelete = (userId) => {
+    dispatch(removeUser(userId))
   }
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex)
   }
 
-  if (!isProductsLoading) {
+  if (!isUsersLoading) {
     return (
       <>
-        <div className={styles.main}>
-          <AdminNavbar title="Users" isBackButton={true} />
-          <div className={styles.mainSection}>
-            <ProductFilter filter={filter} setFilter={setFilter} />
-            <UsersTable products={productsCrop} onDelete={handleDelete} />
-          </div>
-          <Pagination
-            itemsCount={count}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
+        <AdminNavbar title="Users" isBackButton={true} />
+        <div style={{ minHeight: 900, overflow: 'auto' }}>
+          <Filter filter={filter} setFilter={setFilter} />
+          <UsersTable users={usersCrop} onDelete={handleDelete} />
         </div>
+        <Pagination
+          itemsCount={count}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </>
     )
   }

@@ -1,15 +1,20 @@
 import httpService from './http.services'
 
-const orderEndpoint = 'order/'
+const orderEndpoint = 'orders/'
 
-const orderService = {
+const ordersService = {
   create: async (payload) => {
+    console.log('payload', payload)
     const { data } = await httpService.post(orderEndpoint, payload)
     return data
   },
   get: async () => {
     const req = await httpService.get(orderEndpoint)
     return req.data
+  },
+  delete: async (payload) => {
+    const req = await httpService.delete(orderEndpoint + payload)
+    return req.data
   }
 }
-export default orderService
+export default ordersService

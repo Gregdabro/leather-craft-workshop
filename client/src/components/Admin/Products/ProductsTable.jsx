@@ -1,10 +1,10 @@
-import Category from '../../Category/Category'
-import ProductColorList from '../../UI/ProductColorList/ProductColorList'
+import Category from '../../UI/Category/Category'
+import ColorList from '../../UI/ColorList/ColorList'
 import ActionButton from '../../common/ActionButton/ActionButton'
 import Table from '../../common/table/Table'
 import Image from '../../UI/Image/Image'
 
-const ProductsTable = ({ products, onDelete, ...rest }) => {
+const ProductsTable = ({ products, onDelete, onEdit }) => {
   const columns = {
     id: {
       path: '_id',
@@ -16,7 +16,7 @@ const ProductsTable = ({ products, onDelete, ...rest }) => {
     },
     name: {
       path: 'name',
-      name: 'User Name'
+      name: 'OrderProduct Name'
     },
     description: {
       path: 'description',
@@ -28,13 +28,17 @@ const ProductsTable = ({ products, onDelete, ...rest }) => {
     },
     colors: {
       name: 'Colors',
-      component: (product) => <ProductColorList colors={product.colors} />
+      component: (product) => <ColorList colors={product.colors} />
+    },
+    price: {
+      path: 'price',
+      name: 'Price'
     },
     actions: {
       name: '#',
       component: (product) => (
         <div style={{ display: 'flex', gap: 10, flexWrap: 'nowrap' }}>
-          <ActionButton action="UPDATE" id={product._id} />
+          <ActionButton action="UPDATE" onClick={() => onEdit(product._id)} />
           <ActionButton action="REMOVE" onClick={() => onDelete(product._id)} />
         </div>
       )

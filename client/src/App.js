@@ -5,7 +5,6 @@ import { useLocation, useRoutes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import withRouter from './hoc/withRouter'
 import withRedux from './hoc/whithRedux'
-import AppLoader from './hoc/appLoader'
 import routes from './routes'
 import { useSelector } from 'react-redux'
 import { isAdminSelector, isLoggedInSelector } from './store/authSlice'
@@ -20,9 +19,7 @@ function App() {
     <div className="App">
       <Header />
       <div className="main-content">
-        <div className="container">
-          <AppLoader>{elements}</AppLoader>
-        </div>
+        <div className="container">{elements}</div>
       </div>
       <Footer />
       <ToastContainer />

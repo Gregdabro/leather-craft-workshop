@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import productService from '../services/product.service'
 import { setMessage } from './messageSlice'
-import { signup } from './authSlice'
+import { toast } from 'react-toastify'
 export const getProducts = createAsyncThunk(
   'products/get',
   async (_, thunkAPI) => {
@@ -13,18 +13,28 @@ export const getProducts = createAsyncThunk(
     }
   }
 )
-export const addProduct = createAsyncThunk(
-  'products/addProduct',
-  async ({ image, name, description, category, price, colors }, thunkAPI) => {
+export const createProduct = createAsyncThunk(
+  'products/createProduct',
+  async (payload, thunkAPI) => {
     try {
-      const response = await productService.create({
-        image,
-        name,
-        description,
-        category,
-        price,
-        colors
-      })
+      const response = await productService.create(payload)
+      return response.data
+    } catch (e) {
+      const message =
+        (e.response && e.response.data && e.response.data.message) ||
+        e.message ||
+        e.toString()
+      thunkAPI.dispatch(setMessage(message))
+      return thunkAPI.rejectWithValue(e.message)
+    }
+  }
+)
+
+export const editProduct = createAsyncThunk(
+  'products/editProduct',
+  async (payload, thunkAPI) => {
+    try {
+      const response = await productService.update(payload)
       return response.data
     } catch (e) {
       const message =
@@ -39,12 +49,27 @@ export const addProduct = createAsyncThunk(
 
 const initialState = {
   entities: [],
-  loading: false
+  isLoading: false,
+  error: null
 }
 
 const productSlice = createSlice({
   name: 'products',
   initialState,
+  reducers: {
+    productRemoved: (state, action) => {
+      state.entities = state.entities.filter(
+        (product) => product._id !== action.payload
+      )
+    },
+    productRequestFiled: (state, action) => {
+      state.error = action.payload
+      state.isLoading = false
+      toast.error(`Error: ${action.payload} `, {
+        position: 'bottom-left'
+      })
+    }
+  },
   extraReducers: {
     [getProducts.pending]: (state) => {
       state.isLoading = true
@@ -56,23 +81,57 @@ const productSlice = createSlice({
     [getProducts.rejected]: (state) => {
       state.isLoading = false
     },
-    [addProduct.pending]: (state) => {
-      state.loading = true
+    [createProduct.pending]: (state) => {
+      state.isLoading = true
     },
-    [addProduct.fulfilled]: (state, action) => {
-      state.loading = false
+    [createProduct.fulfilled]: (state, action) => {
+      state.isLoading = false
       state.entities.push(action.payload)
     },
-    [addProduct.rejected]: (state) => {
-      state.loading = false
+    [createProduct.rejected]: (state) => {
+      state.isLoading = false
     }
   }
 })
-const { reducer: productReducer } = productSlice
+const { reducer: productReducer, actions } = productSlice
 
-export const productLoadingSelector = () => (state) => state.products.isLoading
+const { productRemoved, productRequestFiled, productCreated } = actions
+
+const removeProductRequested = createAction('products/removeProductRequested')
+
+export const removeProduct = (payload) => async (dispatch) => {
+  dispatch(removeProductRequested())
+  try {
+    const { content } = await productService.delete(payload)
+    console.log('content', content)
+    if (!content) {
+      dispatch(productRemoved(payload))
+    }
+  } catch (error) {
+    dispatch(productRequestFiled(error.message))
+  }
+}
+
+export const isLoadingProductSelector = () => (state) =>
+  state.products.isLoading
 export const productListSelector = () => (state) => state.products.entities
 export const productSelector = (productId) => (state) =>
   state.products.entities.find((product) => product._id === productId)
+
+export const getProductsByIds = (productsIds) => (state) => {
+  if (state.products.entities) {
+    const productArray = []
+    for (const prodId of productsIds) {
+      for (const product of state.products.entities) {
+        if (product._id === prodId) {
+          productArray.push(product)
+          break
+        }
+      }
+    }
+    return productArray
+  }
+  return []
+}
 
 export default productReducer

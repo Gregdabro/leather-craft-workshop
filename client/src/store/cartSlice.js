@@ -10,25 +10,7 @@ import localStorageService, {
   removeCart
 } from '../services/localStorage.service'
 import { setMessage } from './messageSlice'
-import orderService from '../services/order.service'
-
-export const createOrder = createAsyncThunk(
-  'cart/createOrder',
-  async ({ payload }, thunkAPI) => {
-    try {
-      const { _id } = localStorageService.getUser()
-      const response = await orderService.create({ ...payload, userId: _id })
-      return response
-    } catch (e) {
-      const message =
-        (e.response && e.response.data && e.response.data.message) ||
-        e.message ||
-        e.toString()
-      thunkAPI.dispatch(setMessage(message))
-      return thunkAPI.rejectWithValue(e.message)
-    }
-  }
-)
+import ordersService from '../services/orders.service'
 
 const cartItems = getCartItems()
 const quantities = getItemsQuantity()

@@ -4,8 +4,8 @@ const productController = require("../controllers/productController")
 const checkRoleMiddleware = require("../middleware/checkRoleMiddleware")
 
 router.post("/", productController.create)
-router.patch("/:productId", checkRoleMiddleware("ADMIN"), productController.update)
-router.delete("/:productId", checkRoleMiddleware("ADMIN"), productController.remove)
+router.patch("/:productId", productController.update)
+router.delete("/:productId", productController.remove)
 router.get("/",  productController.getAll)
 router.get("/:id",productController.getOne)
 

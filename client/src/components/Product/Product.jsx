@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { productSelector } from '../../store/productSlice'
 import { useParams } from 'react-router-dom'
 import { addProduct } from '../../store/cartSlice'
-import ProductColorList from '../UI/ProductColorList/ProductColorList'
+import ColorList from '../UI/ColorList/ColorList'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 
 const Product = () => {
@@ -52,7 +52,7 @@ const Product = () => {
           magni mollitia nesciunt non odit perferendis quas quisquam quos
           repellat reprehenderit similique.
         </p>
-        <ProductColorList colors={product.colors} />
+        <ColorList colors={product.colors} />
         <div className={styles.amount}>
           <button onClick={() => handleQuantity('decrement')}>
             <AiOutlineMinus />

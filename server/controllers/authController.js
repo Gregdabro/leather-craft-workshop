@@ -19,7 +19,7 @@ class AuthController {
                 })
             }
 
-            const {name, email, password, role} = req.body
+            const {name, email, password, role, phone, age, address} = req.body
             const existingUser = await User.findOne({ email })
 
             if (existingUser) {
@@ -33,6 +33,9 @@ class AuthController {
                 email,
                 role: role || userRole.value,
                 password: hashedPassword,
+                phone,
+                age,
+                address
             })
             // todo: реализовать корзину
             // await Basket.create({userId: newUser._id})
