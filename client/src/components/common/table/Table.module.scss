@@ -34,7 +34,7 @@
     background: none;
     transition: color 0.3s ease;
   }
-  td button:nth-child(1) {
+  td button {
     color: #343434;
 
     &:hover {
@@ -42,7 +42,7 @@
     }
   }
 
-  td button:nth-child(2) {
+  td button:nth-child(1) {
     color: crimson;
 
     &:hover {

@@ -15,9 +15,7 @@ class ProductController {
     async update(req, res, next) {
         try {
             const { productId } = req.params
-
             const updatedProduct = await Product.findByIdAndUpdate(productId, req.body, { new: true })
-
             res.send(updatedProduct)
 
         } catch (e) {
@@ -28,9 +26,7 @@ class ProductController {
     async remove(req, res, next) {
         try {
             const { productId } = req.params
-
             const removedProduct = await Product.findById(productId)
-
             await removedProduct.remove()
             return res.send(null)
 

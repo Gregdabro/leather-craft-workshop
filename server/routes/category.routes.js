@@ -4,6 +4,7 @@ const categoryController = require("../controllers/categoryController")
 const checkRoleMiddleware = require("../middleware/checkRoleMiddleware")
 
 router.post("/", checkRoleMiddleware("ADMIN"), categoryController.create)
+
 router.delete("/:categoryId", checkRoleMiddleware("ADMIN"), categoryController.remove)
 
 router.get("/", categoryController.getAll)

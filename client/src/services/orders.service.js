@@ -4,7 +4,6 @@ const orderEndpoint = 'orders/'
 
 const ordersService = {
   create: async (payload) => {
-    console.log('payload', payload)
     const { data } = await httpService.post(orderEndpoint, payload)
     return data
   },

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { paginate } from '../../utils/paginate'
 import Pagination from '../../components/UI/Pagination/Pagination'
@@ -10,7 +10,7 @@ import {
   orderLoadingSelector,
   removeOrder
 } from '../../store/orderSlice'
-import OrdersTable from '../../components/Admin/Orders/OrdersTable'
+import OrdersTable from '../../components/Admin/OrdersTable'
 
 const UsersListPage = () => {
   const dispatch = useDispatch()
@@ -24,7 +24,6 @@ const UsersListPage = () => {
 
   const navigate = useNavigate()
   const handleEdit = (id) => {
-    console.log('id', id)
     navigate(id)
   }
 
@@ -36,8 +35,8 @@ const UsersListPage = () => {
   const ordersCrop = paginate(orderList, currentPage, pageSize)
   return (
     <>
-      <AdminNavbar title="Product List" label="add new" path="add-product" />
-      <div style={{ border: '1px solid red', minHeight: 600 }}>
+      <AdminNavbar title="Orders List" isBackButton={true} />
+      <div style={{ minHeight: 600 }}>
         {!isOrdersLoading && orderList.length === 0 ? (
           <p>Нет товаров по условию</p>
         ) : (

@@ -3,7 +3,6 @@ const config = require("config")
 const Token = require("../models/Token")
 
 class TokenService {
-    // accessToken: string, refreshToken: string, expiresIn: number
     async generate(payload) {
         const accessToken = jwt.sign(payload, config.get("accessSecret"), {
             expiresIn: "1h"

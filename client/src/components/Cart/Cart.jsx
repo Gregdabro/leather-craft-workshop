@@ -34,7 +34,6 @@ const Cart = () => {
       ],
       total
     }
-    console.log('order', order)
     dispatch(createOrder({ payload: { ...order } }))
       .unwrap()
       .then(() => {
@@ -74,7 +73,7 @@ const Cart = () => {
           </div>
           <div className={styles.bottom}>
             <div className={styles.wrapper}>
-              <button onClick={() => handleClearCart()}>Remove Cart</button>
+              <Button onClick={() => handleClearCart()}>Remove Cart</Button>
               <Button onClick={() => handleCreateOrder()}>
                 proceed to checkout
               </Button>

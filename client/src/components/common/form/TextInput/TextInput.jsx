@@ -5,17 +5,6 @@ const TextField = (props) => {
   const [field, meta] = useField(props)
   const displayError = meta.touched && meta.error
   const isValue = meta.value
-  // const errorStyle =
-  //     "absolute text-slate-500 ring-blue-700 ring-opacity-5 appearance-none rounded block w-full   sm:text-sm -bottom-6 ";
-
-  // const getInputClasses = () => {
-  //     return (
-  //         {styles.input} +
-  //         (displayError
-  //             ? " ring-1 ring-blue-700 focus:border-blue-700 focus:ring-blue-700 focus:"
-  //             : "")
-  //     );
-  // };
 
   return (
     <div className={styles.inputBox}>

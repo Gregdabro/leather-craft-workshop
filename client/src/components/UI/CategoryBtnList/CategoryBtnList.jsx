@@ -10,7 +10,7 @@ const CategoryBtnList = ({
   return (
     <div className={styles.categoryList}>
       <CategoryBtnAll onClearFilter={onClearFilter}>
-        ОЧИСТИТЬ ВСЕ
+        all
       </CategoryBtnAll>
       {categories.map((item) => (
         <CategoryBtn

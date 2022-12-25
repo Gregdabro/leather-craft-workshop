@@ -39,7 +39,7 @@ const LoginPage = () => {
       .unwrap()
       .then(() => {
         setSuccessful(true)
-        navigate('/product')
+        navigate('/')
       })
       .catch(() => {
         setSuccessful(false)

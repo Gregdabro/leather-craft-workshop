@@ -1,5 +1,4 @@
 import httpService from './http.services'
-
 const productEndpoint = 'products/'
 
 const productService = {
@@ -12,7 +11,6 @@ const productService = {
     return req.data
   },
   update: async (payload) => {
-    console.log(payload)
     const { productId } = payload
     const req = await httpService.patch(productEndpoint + productId, payload)
     return req.data

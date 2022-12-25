@@ -12,15 +12,6 @@ class cartIemController {
         }
     }
 
-    async update(req, res, next) {
-        try {
-
-
-        } catch (e) {
-            next(ApiError.badRequestError(e.message))
-        }
-    }
-
     async remove(req, res, next) {
         try {
 

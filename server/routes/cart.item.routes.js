@@ -3,15 +3,12 @@ const router = express.Router({ mergeParams: true })
 const authMiddleware = require("../middleware/authMiddleware")
 const cartIemController = require("../controllers/cartItemController")
 
-//CREATE
-router.post("/", cartIemController.create);
-//UPDATE
-router.put("/:id", cartIemController.update);
-//DELETE
-router.delete("/:id", cartIemController.remove);
-//GET USER CART
-router.get("/find/:userId", cartIemController.getOne);
-// //GET ALL
-router.get("/", cartIemController.getAll);
+router.post("/", authMiddleware, cartIemController.create);
+
+router.delete("/:id", authMiddleware, cartIemController.remove);
+
+router.get("/find/:userId", authMiddleware, cartIemController.getOne);
+
+router.get("/", authMiddleware, cartIemController.getAll);
 
 module.exports = router;

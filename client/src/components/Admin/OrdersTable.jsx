@@ -1,6 +1,6 @@
-import ActionButton from '../../common/ActionButton/ActionButton'
-import Table from '../../common/table/Table'
-import OrderProductList from '../../UI/OrderProducts/OrderProductList'
+import ActionButton from '../UI/ActionButton/ActionButton'
+import Table from '../common/table/Table'
+import OrderProductList from '../UI/OrderProducts/OrderProductList'
 
 const OrdersTable = ({ orders, onDelete }) => {
   const columns = {

@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk, createAction } from '@reduxjs/toolkit'
-import productService from '../services/product.service'
 import { setMessage } from './messageSlice'
 import { toast } from 'react-toastify'
 import localStorageService from '../services/localStorage.service'

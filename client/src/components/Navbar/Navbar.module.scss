@@ -6,21 +6,30 @@
   padding: 0 15px;
 
   .navLinks {
+    text-transform: uppercase;
     display: flex;
     gap: 20px;
-    li {
-      /*      .button {
-        padding: 0;
-        border: none;
-        font: inherit;
-        background-color: transparent;
-        text-transform: uppercase;
-        color: black;
 
-        &:hover {
-          color: var(--brown-color);
+    .logout {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      button,
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background: none;
+        font-size: 1rem;
+        text-transform: uppercase;
+
+        svg {
+          font-size: 28px;
         }
-      }*/
+      }
 
       a {
         text-transform: uppercase;
@@ -39,8 +48,8 @@
         position: absolute;
         top: -0.6rem;
         right: -0.6rem;
-        width: 1.75rem;
-        height: 1.75rem;
+        width: 1.5rem;
+        height: 1.5rem;
         border-radius: 50%;
         background: royalblue;
         display: flex;
@@ -49,7 +58,7 @@
         p {
           display: flex;
           color: white;
-          margin-bottom: 0;
+          margin-bottom: 4px;
           font-size: 1.25rem;
         }
       }

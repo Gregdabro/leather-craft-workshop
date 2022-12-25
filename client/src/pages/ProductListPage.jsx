@@ -6,12 +6,15 @@ import {
   productListSelector
 } from '../store/productSlice'
 import ProductList from '../components/ProductList/ProductList'
-import PageHeader from '../components/PageHeader/PageHeader'
+import PageHeader from '../components/Admin/PageHeader/PageHeader'
 import Loader from '../components/UI/Loader/Loader'
 import { paginate } from '../utils/paginate'
 import Pagination from '../components/UI/Pagination/Pagination'
 import Filter from '../components/Filter/Filter'
-import { useProductsFilter, useSelectedProducts } from '../hooks/useProductsFilter'
+import {
+  useProductsFilter,
+  useSelectedProducts
+} from '../hooks/useProductsFilter'
 
 const ProductListPage = () => {
   const productList = useSelector(productListSelector())
@@ -27,7 +30,6 @@ const ProductListPage = () => {
     filter.query
   )
   const selectedProducts = useSelectedProducts(productList, selectedCategory)
-
   const handleClearFilter = () => {
     setFilter({ sort: '', query: '' })
     setSelectedCategory('')
@@ -58,10 +60,10 @@ const ProductListPage = () => {
         onClearFilter={handleClearFilter}
         options={[
           { value: 'name', name: 'По названию' },
-          { value: 'category', name: 'По категории' }
+          { value: 'description', name: 'По описанию' }
         ]}
       />
-      <div style={{ border: '1px solid red', minHeight: 600 }}>
+      <div style={{ minHeight: 600 }}>
         {!isProductLoading && filteredProducts.length === 0 ? (
           <p>Нет товаров по условию</p>
         ) : (

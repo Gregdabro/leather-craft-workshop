@@ -12,7 +12,6 @@ const Filter = ({
   onClearFilter,
   options
 }) => {
-  console.log('options', options)
   return (
     <div className={styles.filterWrapper}>
       {categories && (

@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './Admin.module.scss'
 import { Link } from 'react-router-dom'
 import { AiOutlineShop } from 'react-icons/ai'

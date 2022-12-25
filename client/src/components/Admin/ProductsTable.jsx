@@ -1,8 +1,8 @@
-import Category from '../../UI/Category/Category'
-import ColorList from '../../UI/ColorList/ColorList'
-import ActionButton from '../../common/ActionButton/ActionButton'
-import Table from '../../common/table/Table'
-import Image from '../../UI/Image/Image'
+import Category from '../UI/Category/Category'
+import ColorList from '../UI/ColorList/ColorList'
+import ActionButton from '../UI/ActionButton/ActionButton'
+import Table from '../common/table/Table'
+import Image from '../UI/Image/Image'
 
 const ProductsTable = ({ products, onDelete, onEdit }) => {
   const columns = {
@@ -38,8 +38,8 @@ const ProductsTable = ({ products, onDelete, onEdit }) => {
       name: '#',
       component: (product) => (
         <div style={{ display: 'flex', gap: 10, flexWrap: 'nowrap' }}>
-          <ActionButton action="UPDATE" onClick={() => onEdit(product._id)} />
           <ActionButton action="REMOVE" onClick={() => onDelete(product._id)} />
+          <ActionButton action="UPDATE" onClick={() => onEdit(product._id)} />
         </div>
       )
     }

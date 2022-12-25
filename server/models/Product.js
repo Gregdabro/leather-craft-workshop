@@ -13,4 +13,4 @@ const schema = new Schema({
     timestamps: true
 })
 
-module.exports = model("Product", schema)
+module.exports = model("ProductPage", schema)

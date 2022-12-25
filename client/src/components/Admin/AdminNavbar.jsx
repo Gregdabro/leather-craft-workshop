@@ -1,5 +1,5 @@
 import styles from './Admin.module.scss'
-import BackButton from '../BackButton/BackButton'
+import BackButton from '../UI/BackButton/BackButton'
 import { Link } from 'react-router-dom'
 
 const AdminNavbar = ({ title, isBackButton, path, label }) => {

@@ -2,7 +2,6 @@ import styles from './Navbar.module.scss'
 import IMAGES from '../../constants/images'
 import {
   MAIN_ROUTE,
-  PRODUCT_ROUTE,
   ABOUT_ROUTE,
   CONTACT_ROUTE,
   AUTH_ROUTE,
@@ -10,12 +9,17 @@ import {
 } from '../../utils/consts'
 import { useSelector } from 'react-redux'
 import useLogout from '../../hooks/useLogout'
-import { isLoggedInSelector } from '../../store/authSlice'
-import { NavLink } from 'react-router-dom'
+import { isAdminSelector, isLoggedInSelector } from '../../store/authSlice'
+import { Link, NavLink } from 'react-router-dom'
 import { cartItemQuantitiesSelector } from '../../store/cartSlice'
-import { AiOutlineShopping } from 'react-icons/ai'
+import {
+  AiOutlineLogout,
+  AiOutlineShopping,
+  AiOutlineUser
+} from 'react-icons/ai'
 
 const Navbar = () => {
+  const isAdmin = useSelector(isAdminSelector())
   const isLoggedIn = useSelector(isLoggedInSelector())
   const quantity = useSelector(cartItemQuantitiesSelector())
   const handleLogout = useLogout()
@@ -53,8 +57,17 @@ const Navbar = () => {
       </div>
       <div className={styles.navLinks}>
         {isLoggedIn ? (
-          <div>
-            <button onClick={handleLogout}>logout</button>
+          <div className={styles.logout}>
+            <button onClick={handleLogout}>
+              <p>logout</p> <AiOutlineLogout />
+            </button>
+            <>
+              {isAdmin && (
+                <Link to="/admin">
+                  <p>admin</p> <AiOutlineUser />
+                </Link>
+              )}
+            </>
           </div>
         ) : (
           <div>

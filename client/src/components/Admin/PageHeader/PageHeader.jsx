@@ -2,7 +2,7 @@ import styles from './PageHeader.module.scss'
 import TitlePageWrapper from './TitlePageWrapper'
 import SubTitlePage from './SubTitlePage'
 import TitlePage from './TitlePage'
-import BackButton from '../BackButton/BackButton'
+import BackButton from '../../UI/BackButton/BackButton'
 const PageHeader = ({ title, subTitle, isBackButton }) => {
   return (
     <div className={styles.pageHeader}>

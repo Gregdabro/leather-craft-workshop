@@ -5,7 +5,7 @@ const schema = new Schema({
   userName: {type: String},
   products: [
     {
-      productId: { type: Schema.Types.ObjectId, required: true,ref: "Product" },
+      productId: { type: Schema.Types.ObjectId, required: true,ref: "ProductPage" },
       name: {type: String},
       selectedColor: {type: String},
       amount: {

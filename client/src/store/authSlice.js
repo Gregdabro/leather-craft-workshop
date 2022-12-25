@@ -6,9 +6,16 @@ import { getUser } from '../services/localStorage.service'
 const user = getUser()
 export const signup = createAsyncThunk(
   'auth/signup',
-  async ({ name, email, password }, thunkAPI) => {
+  async ({ name, email, password, age, phone, address }, thunkAPI) => {
     try {
-      const response = await authService.signup({ name, email, password })
+      const response = await authService.signup({
+        name,
+        email,
+        password,
+        age,
+        phone,
+        address
+      })
       return response.user
     } catch (e) {
       const message =

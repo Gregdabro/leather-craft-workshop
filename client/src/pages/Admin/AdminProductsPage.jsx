@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   isLoadingProductSelector,
@@ -9,7 +9,7 @@ import { paginate } from '../../utils/paginate'
 import Pagination from '../../components/UI/Pagination/Pagination'
 import { useProductsFilter } from '../../hooks/useProductsFilter'
 import Filter from '../../components/Filter/Filter'
-import ProductsTable from '../../components/Admin/Products/ProductsTable'
+import ProductsTable from '../../components/Admin/ProductsTable'
 import { useNavigate } from 'react-router-dom'
 import Loader from '../../components/UI/Loader/Loader'
 import AdminNavbar from '../../components/Admin/AdminNavbar'
@@ -56,7 +56,7 @@ const ProductListPage = () => {
           { value: 'category', name: 'По категории' }
         ]}
       />
-      <div style={{ border: '1px solid red', minHeight: 600 }}>
+      <div style={{ minHeight: 600 }}>
         {!isProductLoading && sortedAndSearchedProducts.length === 0 ? (
           <p>Нет товаров по условию</p>
         ) : (

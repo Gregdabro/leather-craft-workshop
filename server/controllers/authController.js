@@ -37,8 +37,6 @@ class AuthController {
                 age,
                 address
             })
-            // todo: реализовать корзину
-            // await Basket.create({userId: newUser._id})
 
             const tokens = await tokenService.generate({ _id: user._id, email, role: user.role})
             await tokenService.save(user._id, tokens.refreshToken)
@@ -83,15 +81,6 @@ class AuthController {
 
         } catch (e) {
             return next(ApiError.internalError(e.message))
-        }
-    }
-
-    async logout(req, res, next) {
-        try {
-            // todo: logout
-        } catch (e) {
-            return next(ApiError.internalError(e.message))
-
         }
     }
 

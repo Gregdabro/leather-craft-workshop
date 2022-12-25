@@ -13,22 +13,6 @@ class OrderController {
         }
     }
 
-    async update(req, res, next) {
-        try {
-            const updatedOrder = await Order.findByIdAndUpdate(
-              req.params.id,
-              {
-                  $set: req.body,
-              },
-              { new: true }
-            )
-            res.status(200).json(updatedOrder)
-
-        } catch (e) {
-            next(ApiError.badRequestError(e.message))
-        }
-    }
-
     async remove(req, res, next) {
         try {
             await Order.findByIdAndDelete(req.params.id)

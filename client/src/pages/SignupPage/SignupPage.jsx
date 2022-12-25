@@ -14,6 +14,9 @@ const signUpSchema = Yup.object({
     .min(3, 'Name must contain at least 3 symbols')
     .required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
+  age: Yup.string().required('Required'),
+  phone: Yup.string().required('Required'),
+  address: Yup.string().required('Required'),
   password: Yup.string()
     .min(4, 'Password must contain at least 4 symbols')
     .required('Required')
@@ -22,7 +25,10 @@ const signUpSchema = Yup.object({
 const initialValues = {
   name: '',
   email: '',
-  password: ''
+  password: '',
+  age: '',
+  phone: '',
+  address: ''
 }
 
 const SignupPage = () => {
@@ -37,15 +43,15 @@ const SignupPage = () => {
   }, [dispatch])
 
   const handleSubmit = (formValues) => {
-    const { name, email, password } = formValues
+    const { name, email, password, age, phone, address } = formValues
     setLoading(true)
     setSuccessful(false)
 
-    dispatch(signup({ name, email, password }))
+    dispatch(signup({ name, email, password, age, phone, address }))
       .unwrap()
       .then(() => {
         setSuccessful(true)
-        navigate('/product')
+        navigate('/')
       })
       .catch(() => {
         setSuccessful(false)
@@ -71,6 +77,9 @@ const SignupPage = () => {
               <TextField label="Name" name="name" />
               <TextField label="Email" name="email" />
               <TextField label="Password" name="password" type="password" />
+              <TextField label="Age" name="age" />
+              <TextField label="Phone" name="phone" />
+              <TextField label="Address" name="address" />
               <Button disabled={loading}>Sign Up</Button>
               <p className={styles.signInlLink}>
                 <span> Already have account? </span>

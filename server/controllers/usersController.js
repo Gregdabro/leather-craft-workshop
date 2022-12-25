@@ -6,9 +6,7 @@ class UsersController {
     async remove(req, res, next) {
         try {
             const { userId } = req.params
-
             const removedUser = await User.findById(userId)
-
             await removedUser.remove()
             return res.send(null)
 

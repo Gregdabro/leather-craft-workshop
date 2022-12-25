@@ -1,4 +1,3 @@
-import React from 'react'
 import Select from 'react-select'
 
 const SelectField = ({ options, onChange, name, label, defaultValue }) => {

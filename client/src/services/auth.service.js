@@ -22,21 +22,15 @@ httpAuth.interceptors.response.use(
   }
 )
 
-// todo: проверка авторизации
-// const authInterceptor = config => {
-//     config.headers.authorization = `Bearer ${localStorageService.getAccessToken()}`
-//     console.log("authInterceptor:", config)
-//     return config
-// }
-//
-// httpAuth.interceptors.request.use(authInterceptor)
-
 const authService = {
-  signup: async ({ name, email, password }) => {
+  signup: async ({ name, email, password, age, phone, address }) => {
     const { data } = await httpAuth.post('signup', {
       name,
       email,
-      password
+      password,
+      age,
+      phone,
+      address
     })
     localStorageService.setTokens({ ...data })
     return data
@@ -51,14 +45,14 @@ const authService = {
   },
   logout: async () => {
     localStorage.removeItem('user')
+  },
+  refresh: async () => {
+    const { data } = await httpAuth.post('token', {
+      grant_type: 'refresh_token',
+      refresh_token: localStorageService.getRefreshToken()
+    })
+    return data
   }
-  // todo: проверка авторизации
-  // check: async () => {
-  //     const { data } = await httpAuth.get("refresh");
-  //     localStorageService.setTokens({...data})
-  //     localStorage.setItem("user", JSON.stringify(data));
-  //     return data;
-  // }
 }
 
 export default authService

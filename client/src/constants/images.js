@@ -19,8 +19,35 @@ import swage_bridle from '../assets/img/bridle/swage_bridle.png'
 import west_end_bridle from '../assets/img/bridle/west_end_bridle.png'
 import west_end_roller_bridle from '../assets/img/bridle/west_end_roller_bridle.png'
 import winchester_bridle from '../assets/img/bridle/winchester_bridle.png'
-
+//======
+import grained_calf from '../assets/img/watch/grained_calf.jpeg'
+import bakers_watch_strap from '../assets/img/watch/bakers_watch_strap.jpeg'
+import gold_watch_strap from '../assets/img/watch/gold_watch_strap.jpeg'
+import alligator_watch_strap from '../assets/img/watch/alligator_watch_strap.jpeg'
+import lloyd_billfold from '../assets/img/wallets/lloyd_billfold.jpeg'
+import lloyd_card_wallet from '../assets/img/wallets/lloyd_card_wallet.jpeg'
+import lloyd_card_case from '../assets/img/wallets/lloyd_card_case.jpeg'
+import lloyd_minimal from '../assets/img/wallets/lloyd_minimal.jpeg'
+import baranil_envelope from '../assets/img/cover/baranil_envelope.jpeg'
+import envelope from '../assets/img/cover/envelope.jpeg'
+import minimal_briefcase from '../assets/img/bags/minimal_briefcase.jpeg'
+import briefcase from '../assets/img/bags/ briefcase.jpeg'
+import music_case from '../assets/img/bags/ music_case.jpeg'
+//======
 const IMAGES = {
+  music_case,
+  briefcase,
+  grained_calf,
+  envelope,
+  minimal_briefcase,
+  baranil_envelope,
+  lloyd_minimal,
+  bakers_watch_strap,
+  gold_watch_strap,
+  alligator_watch_strap,
+  lloyd_card_case,
+  lloyd_billfold,
+  lloyd_card_wallet,
   logo,
   logo1,
   logo2,

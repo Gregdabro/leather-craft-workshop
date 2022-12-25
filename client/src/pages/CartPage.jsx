@@ -1,4 +1,4 @@
-import PageHeader from '../components/PageHeader/PageHeader'
+import PageHeader from '../components/Admin/PageHeader/PageHeader'
 import styles from '../components/Cart/Cart.module.scss'
 import { Outlet } from 'react-router-dom'
 

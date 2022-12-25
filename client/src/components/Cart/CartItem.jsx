@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './Cart.module.scss'
 import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 import IMAGES from '../../constants/images'
@@ -37,12 +36,12 @@ const CartItem = ({
         </div>
       </div>
       <div className={styles.quantity}>
-        <button className="amount-btn" onClick={() => handleIncrement(id)}>
-          <AiOutlinePlus />
-        </button>
-        <p>{amount}</p>
         <button className="amount-btn" onClick={() => handleDecrement(id)}>
           <AiOutlineMinus />
+        </button>
+        <p>{amount}</p>
+        <button className="amount-btn" onClick={() => handleIncrement(id)}>
+          <AiOutlinePlus />
         </button>
       </div>
       <div className={styles.subTotal}>{`${amount * price}`}</div>

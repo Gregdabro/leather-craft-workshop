@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { paginate } from '../../utils/paginate'
 import Pagination from '../../components/UI/Pagination/Pagination'
@@ -12,7 +12,7 @@ import {
   removeUser,
   usersListSelector
 } from '../../store/userSlice'
-import UsersTable from '../../components/Admin/Users/UsersTable'
+import UsersTable from '../../components/Admin/UsersTable'
 
 const UsersListPage = () => {
   const dispatch = useDispatch()
@@ -21,7 +21,11 @@ const UsersListPage = () => {
   const pageSize = 9
   const isUsersLoading = useSelector(isUsersLoadingSelector())
   const [filter, setFilter] = useState({ sort: '', query: '' })
-  const sortedAndSearchedUsers = useProductsFilter(usersList, filter.sort, filter.query)
+  const sortedAndSearchedUsers = useProductsFilter(
+    usersList,
+    filter.sort,
+    filter.query
+  )
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex)
   }
@@ -39,7 +43,7 @@ const UsersListPage = () => {
   const usersCrop = paginate(sortedAndSearchedUsers, currentPage, pageSize)
   return (
     <>
-      <AdminNavbar title="Product List" label="add new" path="add-product" />
+      <AdminNavbar title="Users List" isBackButton={true} />
       <Filter
         filter={filter}
         setFilter={setFilter}
@@ -48,7 +52,7 @@ const UsersListPage = () => {
           { value: 'age', name: 'По возрасту' }
         ]}
       />
-      <div style={{ border: '1px solid red', minHeight: 600 }}>
+      <div style={{ minHeight: 600 }}>
         {!isUsersLoading && sortedAndSearchedUsers.length === 0 ? (
           <p>Нет товаров по условию</p>
         ) : (

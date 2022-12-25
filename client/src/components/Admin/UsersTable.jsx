@@ -1,8 +1,7 @@
-import ActionButton from '../../common/ActionButton/ActionButton'
-import Table from '../../common/table/Table'
+import ActionButton from '../UI/ActionButton/ActionButton'
+import Table from '../common/table/Table'
 
 const UsersTable = ({ users, onDelete }) => {
-  console.log('users', users)
   const columns = {
     id: {
       path: '_id',

@@ -95,7 +95,7 @@ const productSlice = createSlice({
 })
 const { reducer: productReducer, actions } = productSlice
 
-const { productRemoved, productRequestFiled, productCreated } = actions
+const { productRemoved, productRequestFiled } = actions
 
 const removeProductRequested = createAction('products/removeProductRequested')
 
@@ -103,7 +103,6 @@ export const removeProduct = (payload) => async (dispatch) => {
   dispatch(removeProductRequested())
   try {
     const { content } = await productService.delete(payload)
-    console.log('content', content)
     if (!content) {
       dispatch(productRemoved(payload))
     }

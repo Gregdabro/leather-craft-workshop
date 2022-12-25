@@ -10,7 +10,7 @@ export const getColors = createAsyncThunk('colors/get', async (_, thunkAPI) => {
 })
 const initialState = {
   entities: [],
-  isLoading: true,
+  isLoading: false,
   error: null
 }
 

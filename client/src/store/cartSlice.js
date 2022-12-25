@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
-import localStorageService, {
+import {
   getCartItems,
   getItemsQuantity,
   getCartTotal,
@@ -9,8 +9,6 @@ import localStorageService, {
   setItemsQuantity,
   removeCart
 } from '../services/localStorage.service'
-import { setMessage } from './messageSlice'
-import ordersService from '../services/orders.service'
 
 const cartItems = getCartItems()
 const quantities = getItemsQuantity()
